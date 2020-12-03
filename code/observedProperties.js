@@ -15,7 +15,7 @@ export const observedProperties = {
 
   currentStation: { type: Object },
 
-  currentTab: { type: Number },
+  // currentTab: { type: Number },
 
   currentLocation: { type: Object },
 
@@ -43,7 +43,7 @@ export const observedProperties = {
   // is_travel_options_panel_open: { type: Boolean },
   // travel_options: { type: Object },
   detailsOpen: { type: Boolean },
-  mobilityStationMeasurements: { type: Array },
+  // mobilityStationMeasurements: { type: Array },
 
   // attribution: { type: String },
 };

@@ -34,7 +34,6 @@ class Parking extends LitElement {
     this.language = LANGUAGES.EN;
 
     this.isLoading = true;
-    // this.currentTab = 1;
 
     this.map = undefined;
     this.currentLocation = { lat: 46.479, lng: 11.331 };
@@ -42,13 +41,12 @@ class Parking extends LitElement {
     this.hereMapsPlacesFound = [];
     this.hereMapsQuery = "";
 
-    // this.filters = {
-    //   radius: 0,
-    // };
-
     this.currentStation = {};
     this.detailsOpen = false;
-    // this.mobilityStationMeasurements = [];
+
+    this.filters = {
+      radius: 0,
+    };
   }
 
   static get properties() {
@@ -68,11 +66,10 @@ class Parking extends LitElement {
   }
 
   async firstUpdated() {
-    if (this.currentTab === 1) {
-      initializeMap.bind(this)();
-      drawUserOnMap.bind(this)();
-      await drawStationsOnMap.bind(this)();
-    }
+    initializeMap.bind(this)();
+    drawUserOnMap.bind(this)();
+    await drawStationsOnMap.bind(this)();
+
     this.isLoading = false;
   }
 
@@ -87,20 +84,20 @@ class Parking extends LitElement {
           this.map.off();
           this.map.remove();
         }
-        if (this.currentTab === 1 && oldValue !== undefined) {
-          this.isLoading = true;
-          initializeMap
-            .bind(this)()
-            .then(() => {
-              console.log(drawUserOnMap);
-              drawUserOnMap.bind(this)();
-              drawStationsOnMap
-                .bind(this)()
-                .then(() => {
-                  this.isLoading = false;
-                });
-            });
-        }
+        // if (this.currentTab === 1 && oldValue !== undefined) {
+        this.isLoading = true;
+        initializeMap
+          .bind(this)()
+          .then(() => {
+            console.log(drawUserOnMap);
+            drawUserOnMap.bind(this)();
+            drawStationsOnMap
+              .bind(this)()
+              .then(() => {
+                this.isLoading = false;
+              });
+          });
+        // }
       }
     });
   }

@@ -4,7 +4,7 @@ import icon from "leaflet/dist/images/marker-icon.png";
 import iconShadow from "leaflet/dist/images/marker-shadow.png";
 import user__marker from "../assets/user.svg";
 import {
-  requestMobilityParking
+  requestMobilityParking,
   // requestMobilityMeteoStationLatestDetails,
   // requestMobilityMeteoStationSelectedData,
   // requestTourismMeasuringpoint,
@@ -74,9 +74,7 @@ export async function drawStationsOnMap() {
   const stations_layer_array = [];
 
   const parkingStations = await requestMobilityParking();
-  console.log({ parkingStations: parkingStations });
-  const tourismStations = await requestTourismMeasuringpoint();
-  console.log({ tourismStations });
+  console.log(parkingStations);
 
   parkingStations.data.map((station) => {
     const marker_position = getLatLongFromStationDetail(station.scoordinate);
