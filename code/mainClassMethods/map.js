@@ -5,9 +5,7 @@ import iconShadow from "leaflet/dist/images/marker-shadow.png";
 import user__marker from "../assets/user.svg";
 import {
   requestMobilityParking,
-  // requestMobilityMeteoStationLatestDetails,
-  // requestMobilityMeteoStationSelectedData,
-  // requestTourismMeasuringpoint,
+  requestMobilityParkingDetails,
 } from "../api/parkingStations";
 import { getLatLongFromStationDetail, get_system_language } from "../utils";
 import stationIcon from "../assets/station.svg";
@@ -87,31 +85,16 @@ export async function drawStationsOnMap() {
     });
 
     const action = async () => {
-      this.currentStation = {
-        ...station,
-        // CUSTOMstationCompetence: CUSTOMstationCompetenceTypes.mobility,
-      };
-
-      const details = await requestMobilityMeteoStationLatestDetails({
+      const details = await requestMobilityParkingDetails({
         scode: station.scode,
-        tname: station.tname,
       });
       if (details) {
-        console.log(details.data);
-        const data = details.data[0];
-        if (data !== undefined) {
-          const { mvalue, tunit } = data;
-          if (mvalue !== undefined && tunit !== undefined) {
-            this.mobilityStationMeasurements = [
-              {
-                name: station.tdescription || "---",
-                value: `${mvalue} ${tunit}`,
-              },
-            ];
-          }
-        } else {
-          this.mobilityStationMeasurements = [];
-        }
+        console.log(details);
+        console.log(details.data.ParkingStation.stations[station.scode]);
+
+        this.currentStation = {
+          ...details.data.ParkingStation.stations[station.scode],
+        };
       }
 
       this.detailsOpen = true;

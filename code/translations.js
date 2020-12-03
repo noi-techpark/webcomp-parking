@@ -9,29 +9,14 @@ export const t = {
     en: "My location",
     de: "My location",
   },
-  map: {
-    it: "Mappa",
-    en: "Map",
-    de: "Map",
+  tag__free: {
+    it: "Libero",
+    en: "Free",
+    de: "Frei",
   },
-  forecasts: {
-    it: "Previsioni",
-    en: "Forecasts",
-    de: "Forecasts",
-  },
-  video: {
-    it: "Video",
-    en: "Video",
-    de: "Video",
-  },
-  inTheMountains: {
-    it: "In montagna",
-    en: "On the mountains",
-    de: "On the mountains",
-  },
-  byArea: {
-    it: "Per zona",
-    en: "By area",
-    de: "By area",
+  directions: {
+    it: "Indicazioni stradali",
+    en: "Directions",
+    de: "Richtungen",
   },
 };
