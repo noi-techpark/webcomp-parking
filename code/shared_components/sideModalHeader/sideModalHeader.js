@@ -65,7 +65,7 @@ export class SideModalHeader extends LitElement {
       <div class="first_row">
         ${this.type === SIDE_MODAL_HEADER_TYPES.title && this.tLinkedTagText
           ? html`<wc-tag type="primary" content="${this.tLinkedTagText}"></wc-tag>`
-          : ''}
+          : html`<div></div>`}
         ${this.type === SIDE_MODAL_HEADER_TYPES.filter ? html`<div><p class="fTitle">${this.fTitle}</p></div>` : ''}
         ${this.type === SIDE_MODAL_HEADER_TYPES.filter
           ? html`<div>

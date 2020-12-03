@@ -2,6 +2,7 @@ import { html } from "lit-element";
 import { SIDE_MODAL_ROW_TYPES } from "../shared_components/sideModalRow/sideModalRow";
 import { t } from "../translations";
 import Chart from "chart.js";
+import dayjs from "dayjs";
 // import { requestMobilityMeteoStationLatestDetails } from "../api/meteoStations";
 // import { CUSTOMstationCompetenceTypes } from "../webcomp-meteo-generic";
 
@@ -24,6 +25,8 @@ export function render_details() {
   const forecast4 =
     sdatatypes["parking-forecast-240"]["tmeasurements"][0]["mvalue"];
 
+  const now = dayjs();
+
   const checkIfTagInterval = setInterval(() => {
     if (this.shadowRoot.getElementById("IDForecastChart")) {
       console.log(this.shadowRoot.getElementById("IDForecastChart"));
@@ -32,7 +35,13 @@ export function render_details() {
         {
           type: "line",
           data: {
-            labels: ["Now", "10:00", "11:00", "12:00", "13:00"],
+            labels: [
+              "Now",
+              now.add(1, "hour").format("hh:mm"),
+              now.add(2, "hour").format("hh:mm"),
+              now.add(3, "hour").format("hh:mm"),
+              now.add(4, "hour").format("hh:mm"),
+            ],
             datasets: [
               {
                 backgroundColor: "white",
