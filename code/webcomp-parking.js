@@ -3,9 +3,9 @@ import leafletStyle from "leaflet/dist/leaflet.css";
 import { css, html, LitElement, unsafeCSS } from "lit-element";
 import { requestGetCoordinatesFromSearch } from "./api/hereMaps";
 import { render_details } from "./components/details";
+import { render_filters } from "./components/filters";
 import { render__mapControls } from "./components/mapControls";
 import { render_searchPlaces } from "./components/searchPlaces";
-
 import {
   drawStationsOnMap,
   drawUserOnMap,
@@ -13,6 +13,7 @@ import {
 } from "./mainClassMethods/map";
 import { observedProperties } from "./observedProperties";
 import "./shared_components/button/button";
+import "./shared_components/divider/divider";
 import "./shared_components/dropdown/dropdown";
 import "./shared_components/languagePicker/languagePicker";
 // Shared components
@@ -20,8 +21,8 @@ import "./shared_components/searchBar/searchBar";
 import "./shared_components/sideModalHeader/sideModalHeader";
 import "./shared_components/sideModalRow/sideModalRow";
 import "./shared_components/sideModalTabs/sideModalTabs";
+import "./shared_components/checkBox/checkBox";
 import "./shared_components/tag/tag";
-import "./shared_components/divider/divider";
 import { debounce, isMobile, LANGUAGES } from "./utils";
 import ParkingStyle from "./webcomp-parking.scss";
 
@@ -44,9 +45,11 @@ class Parking extends LitElement {
 
     this.currentStation = {};
     this.detailsOpen = false;
+    this.filtersOpen = false;
 
     this.filters = {
       radius: 0,
+      availability: false,
     };
   }
 
@@ -85,7 +88,6 @@ class Parking extends LitElement {
           this.map.off();
           this.map.remove();
         }
-        // if (this.currentTab === 1 && oldValue !== undefined) {
         this.isLoading = true;
         initializeMap
           .bind(this)()
@@ -98,7 +100,6 @@ class Parking extends LitElement {
                 this.isLoading = false;
               });
           });
-        // }
       }
     });
   }
@@ -109,7 +110,8 @@ class Parking extends LitElement {
 
   handleSearchBarFilterAction = () => {
     console.log("Toggle filters");
-    this.showFilters = !this.showFilters;
+    this.detailsOpen = false;
+    this.filtersOpen = !this.filtersOpen;
   };
 
   debounced__request__get_coordinates_from_search = debounce(
@@ -118,6 +120,8 @@ class Parking extends LitElement {
   );
 
   render() {
+    console.log(this.filters);
+
     return html`
       <style>
         * {
@@ -168,6 +172,11 @@ class Parking extends LitElement {
           ${this.detailsOpen
             ? html`<div class="parking__sideBar__details mt-4px">
                 ${render_details.bind(this)()}
+              </div>`
+            : ""}
+          ${this.filtersOpen
+            ? html`<div class="parking__sideBar__filters mt-4px">
+                ${render_filters.bind(this)()}
               </div>`
             : ""}
         </div>

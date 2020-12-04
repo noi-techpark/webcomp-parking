@@ -65,7 +65,9 @@ export class SideModalHeader extends LitElement {
       <div class="first_row">
         ${this.type === SIDE_MODAL_HEADER_TYPES.title && this.tLinkedTagText
           ? html`<wc-tag type="primary" content="${this.tLinkedTagText}"></wc-tag>`
-          : html`<div></div>`}
+          : this.type === SIDE_MODAL_HEADER_TYPES.title
+          ? html`<div></div>`
+          : ''}
         ${this.type === SIDE_MODAL_HEADER_TYPES.filter ? html`<div><p class="fTitle">${this.fTitle}</p></div>` : ''}
         ${this.type === SIDE_MODAL_HEADER_TYPES.filter
           ? html`<div>
@@ -76,21 +78,23 @@ export class SideModalHeader extends LitElement {
         <div class="close_icon_container"><img src="${XBlackIcon}" alt="" @click="${this.handleCloseAction}" /></div>
       </div>
       <!-- t header title -->
-      <div class="second_row">
-        ${this.type === SIDE_MODAL_HEADER_TYPES.title && this.tIcon
-          ? html`<div><img src="${this.tIcon}" alt="" /></div>`
-          : ''}
-        ${this.type === SIDE_MODAL_HEADER_TYPES.title ? html`<div><p class="tTitle">${this.tTitle}</p></div>` : ''}
-      </div>
+      ${this.type === SIDE_MODAL_HEADER_TYPES.title
+        ? html` <div class="second_row">
+            ${this.tIcon ? html`<div><img src="${this.tIcon}" alt="" /></div>` : ''}
+            <div><p class="tTitle">${this.tTitle}</p></div>
+          </div>`
+        : ''}
       <!-- Optional link -->
-      <div class="third_row">
-        ${this.type === SIDE_MODAL_HEADER_TYPES.title && this.tSubtitle
-          ? html`<div><p class="tSubtitle">${this.tSubtitle}</p></div>`
-          : ''}
-        ${this.type === SIDE_MODAL_HEADER_TYPES.title && this.tOptionalLink.url
-          ? html`<div><a class="tOptionalLink" href="${this.tOptionalLink.url}">${this.tOptionalLink.text}</a></div>`
-          : ''}
-      </div>
+      ${this.type === SIDE_MODAL_HEADER_TYPES.title
+        ? html` <div class="third_row">
+            ${this.tSubtitle ? html`<div><p class="tSubtitle">${this.tSubtitle}</p></div>` : ''}
+            ${this.tOptionalLink.url
+              ? html`<div>
+                  <a class="tOptionalLink" href="${this.tOptionalLink.url}">${this.tOptionalLink.text}</a>
+                </div>`
+              : ''}
+          </div>`
+        : ''}
     </div>`;
   }
 }

@@ -7,7 +7,7 @@ export class CheckBox extends LitElement {
     super();
     this.label = '- - -';
     this.name = '';
-    this.value = false;
+    // this.value = false;
     this.action = (value) => {
       console.log(value);
     };
@@ -34,6 +34,8 @@ export class CheckBox extends LitElement {
   };
 
   render() {
+    console.log(this.value);
+
     return html`<label class="checkBox"
       >${this.label}
       <input type="checkbox" .name="${this.name}" @change=${this.handleLabelClick} ?checked=${this.value} />

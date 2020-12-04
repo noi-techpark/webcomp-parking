@@ -8,7 +8,7 @@ export function render_searchPlaces() {
     if (value) {
       this.hereMapsQuery = value;
       this.debounced__request__get_coordinates_from_search(value);
-      this.showFilters = false;
+      this.filtersOpen = false;
     } else {
       this.hereMapsPlacesFound = [];
     }
@@ -18,7 +18,7 @@ export function render_searchPlaces() {
     this.currentLocation = { lat: parseFloat(lat), lng: parseFloat(lng) };
     this.current_station = {};
     this.hereMapsPlacesFound = [];
-    this.showFilters = false;
+    this.filtersOpen = false;
     this.map.flyTo([lat, lng], 15);
     this.map.removeLayer(this.layer_user);
     this.drawMap();
@@ -56,7 +56,7 @@ export function render_searchPlaces() {
   const handle_focus_input = () => {
     this.debounced__request__get_coordinates_from_search(this.hereMapsQuery);
     if (this.hereMapsQuery.length) {
-      this.showFilters = false;
+      this.filtersOpen = false;
     }
   };
 
@@ -86,12 +86,17 @@ export function render_searchPlaces() {
     `;
   };
 
+  let filtersNumber = 0;
+  if (this.filters.availability) {
+    filtersNumber = filtersNumber + 1;
+  }
+
   return html`
     <div class="searchBox">
       <wc-searchbar
         .searchValue="${this.hereMapsQuery}"
         placeHolder="${t.search.it}..."
-        .filtersNumber="${0}"
+        .filtersNumber="${filtersNumber}"
         .filtersAction="${this.handleSearchBarFilterAction}"
         .action="${handle_onchange}"
         @focus=${handle_focus_input}

@@ -19,4 +19,25 @@ export const t = {
     en: "Directions",
     de: "Richtungen",
   },
+  // Filetrs
+  filters: {
+    it: "Filtri",
+    en: "Filters",
+    de: "Filter",
+  },
+  cancelFilters: {
+    it: "Annulla filtri",
+    en: "Cancel filters",
+    de: "Filter abbrechen",
+  },
+  availability: {
+    it: "DISPONIBILITÀ",
+    en: "AVAILABILITY",
+    de: "VERFÜGBARKEIT",
+  },
+  onlyShowParkingSpacesWithAvailableSpots: {
+    it: "Mostra solo percheggi con posti disponibili",
+    en: "Only show parking spaces with available spots",
+    de: "Nur Parkplätze mit verfügbaren Sitzplätzen anzeigen",
+  },
 };

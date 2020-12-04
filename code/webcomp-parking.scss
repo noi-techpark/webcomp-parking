@@ -77,7 +77,8 @@
     }
   }
 
-  .parking__sideBar__details {
+  .parking__sideBar__details,
+  .parking__sideBar__filters {
     height: calc(var(--height) - 86px);
     background-color: $white;
     overflow-y: auto;
@@ -88,6 +89,9 @@
       @include MixinCaption;
       color: $gray-600;
       margin: 16px 16px 0 16px;
+    }
+    .options_container {
+      margin: 8px 16px 0 16px;
     }
     .forecast_graph__container {
       margin-top: 16px;
