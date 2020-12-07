@@ -34,9 +34,11 @@ export class CheckBox extends LitElement {
   };
 
   render() {
+    console.log(this.value);
+
     return html`<label class="checkBox"
       >${this.label}
-      <input type="checkbox" .name="${this.name}" @change=${this.handleLabelClick} ?checked=${this.value} />
+      <input type="checkbox" .name="${this.name}" @change=${this.handleLabelClick} .checked=${this.value} />
       <span class="checkmark">
         <img src="${TickWhiteIcon}" alt="Tick white icon" />
       </span>
