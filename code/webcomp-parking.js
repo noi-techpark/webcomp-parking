@@ -83,16 +83,13 @@ class Parking extends LitElement {
 
   updated(changedProperties) {
     changedProperties.forEach((oldValue, propName) => {
-      if (propName === "currentTab") {
-        if (oldValue === 1) {
-          this.map.off();
-          this.map.remove();
-        }
+      if (propName === "filters") {
+        this.map.off();
+        this.map.remove();
         this.isLoading = true;
         initializeMap
           .bind(this)()
           .then(() => {
-            console.log(drawUserOnMap);
             drawUserOnMap.bind(this)();
             drawStationsOnMap
               .bind(this)()
@@ -103,10 +100,6 @@ class Parking extends LitElement {
       }
     });
   }
-
-  handleSearch = (searchValue) => {
-    console.log(searchValue);
-  };
 
   handleSearchBarFilterAction = () => {
     console.log("Toggle filters");
@@ -120,8 +113,6 @@ class Parking extends LitElement {
   );
 
   render() {
-    console.log(this.filters);
-
     return html`
       <style>
         * {

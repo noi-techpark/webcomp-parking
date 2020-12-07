@@ -3,7 +3,7 @@ import { BASE_PATH_MOBILITY } from "./config";
 export const requestMobilityParking = async () => {
   try {
     const request = await fetch(
-      `${BASE_PATH_MOBILITY}/flat/ParkingStation/*/latest?where=sactive.eq.true&select=scoordinate,scode,smetadata,sdatatypes`
+      `${BASE_PATH_MOBILITY}/tree,node/ParkingStation/*/latest?where=sactive.eq.true&select=scoordinate,scode,smetadata,sdatatypes`
     );
     if (request.status !== 200) {
       throw new Error(request.statusText);

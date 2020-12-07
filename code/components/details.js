@@ -3,8 +3,6 @@ import { SIDE_MODAL_ROW_TYPES } from "../shared_components/sideModalRow/sideModa
 import { t } from "../translations";
 import Chart from "chart.js";
 import dayjs from "dayjs";
-// import { requestMobilityMeteoStationLatestDetails } from "../api/meteoStations";
-// import { CUSTOMstationCompetenceTypes } from "../webcomp-meteo-generic";
 
 export function render_details() {
   console.log(this.currentStation);

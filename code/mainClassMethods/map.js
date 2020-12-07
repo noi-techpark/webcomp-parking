@@ -72,37 +72,56 @@ export async function drawStationsOnMap() {
   const stations_layer_array = [];
 
   const parkingStations = await requestMobilityParking();
-  console.log(parkingStations);
+  console.log(Object.values(parkingStations.data.ParkingStation.stations));
 
-  parkingStations.data.map((station) => {
-    const marker_position = getLatLongFromStationDetail(station.scoordinate);
-    const station_icon = Leaflet.icon({
-      iconUrl: stationIcon,
-      iconSize: [36, 36],
-    });
-    const marker = Leaflet.marker([marker_position.lat, marker_position.lng], {
-      icon: station_icon,
-    });
-
-    const action = async () => {
-      const details = await requestMobilityParkingDetails({
-        scode: station.scode,
-      });
-      if (details) {
-        console.log(details);
-        console.log(details.data.ParkingStation.stations[station.scode]);
-
-        this.currentStation = {
-          ...details.data.ParkingStation.stations[station.scode],
-        };
+  Object.values(parkingStations.data.ParkingStation.stations)
+    .filter((station) => {
+      // Use filters on all retrived stations
+      let valid = true;
+      if (this.filters.availability) {
+        if (
+          station.sdatatypes.occupied &&
+          station.sdatatypes.occupied.tmeasurements[0].mvalue >=
+            station.smetadata.capacity
+        ) {
+          valid = false;
+        }
       }
+      return valid;
+    })
+    .map((station) => {
+      const marker_position = getLatLongFromStationDetail(station.scoordinate);
+      const station_icon = Leaflet.icon({
+        iconUrl: stationIcon,
+        iconSize: [36, 36],
+      });
+      const marker = Leaflet.marker(
+        [marker_position.lat, marker_position.lng],
+        {
+          icon: station_icon,
+        }
+      );
 
-      this.detailsOpen = true;
-    };
+      const action = async () => {
+        const details = await requestMobilityParkingDetails({
+          scode: station.scode,
+        });
+        if (details) {
+          console.log(details);
+          console.log(details.data.ParkingStation.stations[station.scode]);
 
-    marker.on("mousedown", action);
-    stations_layer_array.push(marker);
-  });
+          this.currentStation = {
+            ...details.data.ParkingStation.stations[station.scode],
+          };
+        }
+
+        this.filtersOpen = false;
+        this.detailsOpen = true;
+      };
+
+      marker.on("mousedown", action);
+      stations_layer_array.push(marker);
+    });
 
   if (!this.language) {
     this.language = get_system_language();
