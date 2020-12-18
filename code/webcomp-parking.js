@@ -1,6 +1,8 @@
 import "@babel/polyfill";
 import leafletStyle from "leaflet/dist/leaflet.css";
 import { css, html, LitElement, unsafeCSS } from "lit-element";
+import { classMap } from "lit-html/directives/class-map";
+import { debounce as _debounce } from "lodash";
 import { requestGetCoordinatesFromSearch } from "./api/hereMaps";
 import { render_details } from "./components/details";
 import { render_filters } from "./components/filters";
@@ -13,6 +15,7 @@ import {
 } from "./mainClassMethods/map";
 import { observedProperties } from "./observedProperties";
 import "./shared_components/button/button";
+import "./shared_components/checkBox/checkBox";
 import "./shared_components/divider/divider";
 import "./shared_components/dropdown/dropdown";
 import "./shared_components/languagePicker/languagePicker";
@@ -21,9 +24,9 @@ import "./shared_components/searchBar/searchBar";
 import "./shared_components/sideModalHeader/sideModalHeader";
 import "./shared_components/sideModalRow/sideModalRow";
 import "./shared_components/sideModalTabs/sideModalTabs";
-import "./shared_components/checkBox/checkBox";
 import "./shared_components/tag/tag";
-import { debounce, isMobile, LANGUAGES } from "./utils";
+import { t } from "./translations";
+import { isMobile, LANGUAGES } from "./utils";
 import ParkingStyle from "./webcomp-parking.scss";
 
 class Parking extends LitElement {
@@ -36,6 +39,8 @@ class Parking extends LitElement {
     this.language = LANGUAGES.EN;
 
     this.isLoading = true;
+    this.mobileOpen = false;
+    this.isMobile = isMobile();
 
     this.map = undefined;
     this.currentLocation = { lat: 46.479, lng: 11.331 };
@@ -65,6 +70,27 @@ class Parking extends LitElement {
     `;
   }
 
+  handleWindowResize() {
+    if (isMobile() !== this.isMobile) {
+      if (!this.isMobile) {
+        this.mobileOpen = false;
+      }
+      this.isMobile = isMobile();
+    }
+  }
+
+  connectedCallback() {
+    super.connectedCallback();
+    window.addEventListener(
+      "resize",
+      _debounce(this.handleWindowResize.bind(this), 150)
+    );
+  }
+  disconnectedCallback() {
+    window.removeEventListener("resize", this.handleWindowResize.bind(this));
+    super.disconnectedCallback();
+  }
+
   async drawMap() {
     drawUserOnMap.bind(this)();
   }
@@ -83,7 +109,10 @@ class Parking extends LitElement {
 
   updated(changedProperties) {
     changedProperties.forEach((oldValue, propName) => {
-      if (propName === "filters") {
+      if (propName === "mobileOpen" || propName === "isMobile") {
+        this.map.invalidateSize();
+      }
+      if (propName === "filters" || propName === "language") {
         this.map.off();
         this.map.remove();
         this.isLoading = true;
@@ -107,9 +136,9 @@ class Parking extends LitElement {
     this.filtersOpen = !this.filtersOpen;
   };
 
-  debounced__request__get_coordinates_from_search = debounce(
-    500,
-    requestGetCoordinatesFromSearch.bind(this)
+  debounced__request__get_coordinates_from_search = _debounce(
+    requestGetCoordinatesFromSearch.bind(this),
+    500
   );
 
   render() {
@@ -129,51 +158,64 @@ class Parking extends LitElement {
           `}
 
       <div
-        class="parking 
-          ${
-          /*this.mobile_open ? `MODE__mobile__open` : `MODE__mobile__closed`*/ ""
-        }
-          ${isMobile() ? `mobile` : ``}
-          ${/*this.getAnimationState()*/ ""}"
+        class=${classMap({
+          parking: true,
+          mobile: this.isMobile,
+          MODE__mobile__open: this.isMobile && this.mobileOpen,
+          MODE__mobile__closed: this.isMobile && !this.mobileOpen,
+        })}
       >
-        <div
-          class="parking__language_picker ${this.currentTab === 1
-            ? "big_margin"
-            : ""}"
-        >
-          <wc-languagepicker
-            .supportedLanguages="${LANGUAGES}"
-            .language="${this.language}"
-            .changeLanguageAction="${(language) => {
-              this.language = language;
-            }}"
-          ></wc-languagepicker>
-        </div>
-        ${/*this.isFullScreen ? this.render_closeFullscreenButton() : null*/ ""}
-        ${/*this.render_backgroundMap()*/ ""}
+        ${this.isMobile && !this.mobileOpen
+          ? html`<div class="MODE__mobile__closed__overlay">
+              <wc-button
+                @click="${() => {
+                  this.mobileOpen = true;
+                }}"
+                type="primary"
+                .content="${t["openTheMap"][this.language]}"
+              ></wc-button>
+            </div>`
+          : ""}
+        ${(this.isMobile && this.mobileOpen) || !this.isMobile
+          ? html`<div
+                class="parking__language_picker ${this.currentTab === 1
+                  ? "big_margin"
+                  : ""}"
+              >
+                <wc-languagepicker
+                  .supportedLanguages="${LANGUAGES}"
+                  .language="${this.language}"
+                  .changeLanguageAction="${(language) => {
+                    this.language = language;
+                  }}"
+                ></wc-languagepicker>
+              </div>
 
-        <div class="parking__sideBar">
-          <!-- <div class="parking__sideBar__tabBar">
+              <div class="parking__sideBar">
+                <!-- <div class="parking__sideBar__tabBar">
           </div> -->
 
-          <div class="parking__sideBar__searchBar mt-4px">
-            ${render_searchPlaces.bind(this)()}
-          </div>
+                <div class="parking__sideBar__searchBar mt-4px">
+                  ${render_searchPlaces.bind(this)()}
+                </div>
 
-          ${this.detailsOpen
-            ? html`<div class="parking__sideBar__details mt-4px">
-                ${render_details.bind(this)()}
+                ${this.detailsOpen
+                  ? html`<div class="parking__sideBar__details mt-4px">
+                      ${render_details.bind(this)()}
+                    </div>`
+                  : ""}
+                ${this.filtersOpen
+                  ? html`<div class="parking__sideBar__filters mt-4px">
+                      ${render_filters.bind(this)()}
+                    </div>`
+                  : ""}
               </div>`
-            : ""}
-          ${this.filtersOpen
-            ? html`<div class="parking__sideBar__filters mt-4px">
-                ${render_filters.bind(this)()}
-              </div>`
-            : ""}
-        </div>
+          : null}
 
         <div id="map"></div>
-        ${render__mapControls.bind(this)()}
+        ${!this.isMobile || (this.isMobile && this.mobileOpen)
+          ? render__mapControls.bind(this)()
+          : null}
       </div>
     `;
   }

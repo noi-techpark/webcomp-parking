@@ -1,10 +1,11 @@
 import { html } from "lit-html";
 import expandImage from "../assets/expand.svg";
 import findPositionImage from "../assets/find-position.svg";
+import minimizeImage from "../assets/minimize.svg";
 import minusImage from "../assets/minus.svg";
 import plusImage from "../assets/plus.svg";
 import { drawUserOnMap } from "../mainClassMethods/map";
-import { getCurrentPosition, isMobile } from "../utils";
+import { getCurrentPosition } from "../utils";
 
 export function render__mapControls() {
   const handleBtnZoomIn = () => {
@@ -35,20 +36,24 @@ export function render__mapControls() {
 
   return html`
     <div class="map_controls">
-      ${isMobile()
+      ${this.isMobile
         ? html`<div class="mt-16px">
             <wc-button
-              @click="${() => {}}"
+              @click="${() => {
+                this.mobileOpen = !this.mobileOpen;
+              }}"
               type="square"
-              .image="${expandImage}"
+              .image="${this.mobileOpen ? minimizeImage : expandImage}"
             ></wc-button>
           </div>`
         : ""}
-      <wc-button
-        @click="${handleBtnCenterMap}"
-        type="square"
-        .image="${findPositionImage}"
-      ></wc-button>
+      <div class="mt-16px">
+        <wc-button
+          @click="${handleBtnCenterMap}"
+          type="square"
+          .image="${findPositionImage}"
+        ></wc-button>
+      </div>
       <div class="mt-16px">
         <wc-button
           @click="${handleBtnZoomIn}"
@@ -66,14 +71,3 @@ export function render__mapControls() {
     </div>
   `;
 }
-
-/* <div
-        @click=${() => {
-          this.handleFullScreenMap();
-        }}
-        class=${`map_controls__button ${
-          isMobile() && !this.mobile_open ? "" : `d-none`
-        }`}
-      >
-        <img src=${expandImage} alt="" />
-      </div> */
