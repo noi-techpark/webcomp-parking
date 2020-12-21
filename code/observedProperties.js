@@ -16,4 +16,7 @@ export const observedProperties = {
 
   detailsOpen: { type: Boolean },
   filtersOpen: { type: Boolean },
+
+  isMobile: { type: Boolean },
+  mobileOpen: { type: Boolean },
 };

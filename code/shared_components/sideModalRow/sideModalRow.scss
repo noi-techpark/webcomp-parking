@@ -25,5 +25,11 @@
   .sideModalRow__text {
     @include MixinParagraphRegular;
     margin: 0;
+    a {
+      color: $green-200;
+    }
+    p, ul {
+      margin-top: 0;
+    }
   }
 }
