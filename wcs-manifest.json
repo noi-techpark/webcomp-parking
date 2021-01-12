@@ -19,7 +19,7 @@
       "organizationUrl": "https://belkadigital.com/"
     }
   ],
-  "image": null,
+  "image": "wcs-logo.png",
   "searchTags": ["parking"],
   "dist": {
     "basePath": "dist",
