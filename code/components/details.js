@@ -27,7 +27,6 @@ export function render_details() {
 
   const checkIfTagInterval = setInterval(() => {
     if (this.shadowRoot.getElementById("IDForecastChart")) {
-      console.log(this.shadowRoot.getElementById("IDForecastChart"));
       const forecastChart = new Chart(
         this.shadowRoot.getElementById("IDForecastChart"),
         {
