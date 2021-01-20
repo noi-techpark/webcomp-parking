@@ -4,6 +4,7 @@ export const observedProperties = {
   fontFamily: { type: String },
   language: { type: String },
   tiles_url: { type: String, attribute: "tiles-url" },
+  currentLocation: { type: Object },
 
   isLoading: { type: Boolean },
   filters: { type: Object },
