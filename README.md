@@ -78,6 +78,12 @@ If set to `"true"` the forecast graph is hidden. Default is `"false"`.
 
 Example: `"true"`
 
+#### disableParkingRealTime
+
+If set to `"true"` the real time data are hidden. Default is `"false"`.
+
+Example: `"true"`
+
 
 ## Getting started
 

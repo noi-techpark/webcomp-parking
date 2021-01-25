@@ -6,6 +6,7 @@ export const observedProperties = {
   tiles_url: { type: String, attribute: "tiles-url" },
   currentLocation: { type: Object },
   disableParkingForecast: { type: Boolean },
+  disableParkingRealTime: { type: Boolean },
 
   isLoading: { type: Boolean },
   filters: { type: Object },

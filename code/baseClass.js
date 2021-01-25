@@ -10,6 +10,7 @@ export class BaseParking extends LitElement {
     this.mapAttribution = "";
     this.language = LANGUAGES.EN;
     this.disableParkingForecast = false;
+    this.disableParkingRealTime = false;
 
     this.isLoading = true;
     this.mobileOpen = false;
