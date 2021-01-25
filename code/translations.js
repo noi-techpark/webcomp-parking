@@ -45,4 +45,26 @@ export const t = {
     en: "Only show parking spaces with available spots",
     de: "Nur Parkplätze mit verfügbaren Sitzplätzen anzeigen",
   },
+  details: {
+    it: "DETTAGLI",
+    en: "DETAILS",
+    de: "EINZELHEITEN",
+  },
+  forecasts: {
+    it: "PREVISIONI",
+    en: "FORECASTS",
+    de: "PROGNOSEN",
+  },
+
+  totalSeats: {
+    it: "Posti totali",
+    en: "Total seats",
+    de: "Gesamtzahl der Sitzplätze",
+  },
+  occupiedSeats: {
+    it: "Posti occupati",
+    en: "Occupied seats",
+    de: "Besetzte Plätze",
+  },
+  address: { it: "Indirizzo", en: "Address", de: "Adresse" },
 };
