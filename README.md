@@ -84,6 +84,12 @@ If set to `"true"` the real time data are hidden. Default is `"false"`.
 
 Example: `"true"`
 
+#### enabledParkingData
+
+Set the datasets to use in the component. Default is `["tourism", "mobility"]`.
+
+Example: `["mobility"]`
+
 
 ## Getting started
 

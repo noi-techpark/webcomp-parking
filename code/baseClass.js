@@ -12,6 +12,7 @@ export class BaseParking extends LitElement {
     this.disableParkingForecast = false;
     this.disableParkingRealTime = false;
     this.disableParkingDirections = false;
+    this.enabledParkingData = ["tourism", "mobility"];
 
     this.isLoading = true;
     this.mobileOpen = false;

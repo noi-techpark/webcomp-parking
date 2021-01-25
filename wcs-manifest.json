@@ -118,6 +118,15 @@
         "options": {
           "default": "false"
         }
+      },
+      {
+        "key": "enabledParkingData",
+        "type": "text",
+        "label": "Set the datasets to use in the component. Default is '[\"tourism\", \"mobility\"]'",
+        "required": false,
+        "options": {
+          "default": "[\"tourism\", \"mobility\"]"
+        }
       }
     ]
   }

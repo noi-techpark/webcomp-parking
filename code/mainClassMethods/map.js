@@ -72,10 +72,14 @@ export function drawUserOnMap() {
 export async function drawStationsOnMap() {
   const stations_layer_array = [];
 
-  const parkingStations = await requestMobilityParking();
-  const tourismParkingStations = await requestTourismParking({
-    language: this.language,
-  });
+  const parkingStations = this.enabledParkingData.includes("mobility")
+    ? await requestMobilityParking()
+    : undefined;
+  const tourismParkingStations = this.enabledParkingData.includes("tourism")
+    ? await requestTourismParking({
+        language: this.language,
+      })
+    : undefined;
 
   if (parkingStations) {
     Object.values(parkingStations.data.ParkingStation.stations)
