@@ -11,6 +11,7 @@ export class BaseParking extends LitElement {
     this.language = LANGUAGES.EN;
     this.disableParkingForecast = false;
     this.disableParkingRealTime = false;
+    this.disableParkingDirections = false;
 
     this.isLoading = true;
     this.mobileOpen = false;

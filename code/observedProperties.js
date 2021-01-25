@@ -7,6 +7,7 @@ export const observedProperties = {
   currentLocation: { type: Object },
   disableParkingForecast: { type: Boolean },
   disableParkingRealTime: { type: Boolean },
+  disableParkingDirections: { type: Boolean },
 
   isLoading: { type: Boolean },
   filters: { type: Object },

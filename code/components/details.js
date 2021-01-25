@@ -115,10 +115,15 @@ export function render_details() {
         parkingCapacity - occupiedSpots <= 0
           ? t["tag__free"][this.language]
           : ""}"
-        .tOptionalLink="${{
-          text: t["directions"][this.language],
-          url: `http://www.google.com/maps/place/${scoordinate.y},${scoordinate.x}`,
-        }}"
+        .tOptionalLink="${!this.disableParkingDirections
+          ? {
+              text: t["directions"][this.language],
+              url: `http://www.google.com/maps/place/${scoordinate.y},${scoordinate.x}`,
+            }
+          : {
+              text: "",
+              url: "",
+            }}"
         .closeModalAction="${() => {
           this.detailsOpen = false;
         }}"
@@ -149,6 +154,7 @@ export function render_details() {
         .title="${t["address"][this.language]}"
         .text="${mainaddress || municipality}"
       ></wc-sidemodal-row>
+
       ${!this.disableParkingForecast
         ? html`
             <div>
