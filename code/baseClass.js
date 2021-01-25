@@ -9,6 +9,7 @@ export class BaseParking extends LitElement {
     this.fontFamily = "";
     this.mapAttribution = "";
     this.language = LANGUAGES.EN;
+    this.disableParkingForecast = false;
 
     this.isLoading = true;
     this.mobileOpen = false;

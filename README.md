@@ -24,6 +24,7 @@ Include the webcompscript file `dist/webcomp-parking.js` in your HTML and define
     mapAttribution='Map Tiles &copy; <a href="http://developer.here.com">HERE</a>'
     currentLocation='{ "lat": 46.31, "lng": 11.26 }'
     tiles-url="https://1.base.maps.ls.hereapi.com/maptile/2.1/maptile/newest/normal.day/{z}/{x}/{y}/256/png8?apiKey="
+    disableParkingForecast="false"
 ></webcomp-parking>
 ```
 
@@ -70,6 +71,12 @@ Example: `'{ "lat": 46.31, "lng": 11.26 }'`
 Set the URL of the API that provides the tiles.
 
 Example: `"https://1.base.maps.ls.hereapi.com/maptile/2.1/maptile/newest/normal.day/{z}/{x}/{y}/256/png8?apiKey="`
+
+#### disableParkingForecast
+
+If set to `"true"` the forecast graph is hidden. Default is `"false"`.
+
+Example: `"true"`
 
 
 ## Getting started

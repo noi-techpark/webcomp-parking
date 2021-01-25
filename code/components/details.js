@@ -26,7 +26,10 @@ export function render_details() {
   const now = dayjs();
 
   const checkIfTagInterval = setInterval(() => {
-    if (this.shadowRoot.getElementById("IDForecastChart")) {
+    if (
+      this.shadowRoot.getElementById("IDForecastChart") &&
+      !this.disableParkingForecast
+    ) {
       const forecastChart = new Chart(
         this.shadowRoot.getElementById("IDForecastChart"),
         {
@@ -112,16 +115,16 @@ export function render_details() {
         .title="${"Indirizzo"}"
         .text="${mainaddress || municipality}"
       ></wc-sidemodal-row>
-      <div>
-        <p class="caption">PREVISIONI</p>
-      </div>
-      <div class="forecast_graph__container">
-        <canvas id="IDForecastChart" width="260" height="132"></canvas>
-      </div>
+      ${!this.disableParkingForecast
+        ? html`
+            <div>
+              <p class="caption">PREVISIONI</p>
+              <div class="forecast_graph__container">
+                <canvas id="IDForecastChart" width="260" height="132"></canvas>
+              </div>
+            </div>
+          `
+        : ""}
     </div>
   </div>`;
 }
-
-// .tOptionalLink="${args.tOptionalLink}"
-// .tIcon="${args.tIcon}"
-// .tSubtitle="${data.subtitle}"

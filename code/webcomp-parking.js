@@ -187,9 +187,6 @@ class Parking extends BaseParking {
               </div>
 
               <div class="parking__sideBar">
-                <!-- <div class="parking__sideBar__tabBar">
-          </div> -->
-
                 <div class="parking__sideBar__searchBar">
                   ${render_searchPlaces.bind(this)()}
                 </div>
