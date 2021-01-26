@@ -32,5 +32,7 @@ export class BaseParking extends LitElement {
       radius: 0,
       availability: false,
     };
+
+    this.firstLoad = true;
   }
 }

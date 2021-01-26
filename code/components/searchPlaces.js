@@ -13,7 +13,7 @@ export function render_searchPlaces() {
     }
   };
 
-  const manage_map = (lat, lng) => {
+  const manageMap = (lat, lng) => {
     this.currentLocation = { lat: parseFloat(lat), lng: parseFloat(lng) };
     this.current_station = {};
     this.hereMapsPlacesFound = [];
@@ -24,7 +24,7 @@ export function render_searchPlaces() {
     this.isLoading = false;
   };
 
-  const handle__move_to_current_position = () => {
+  const handleMoveToCurrentPosition = () => {
     try {
       navigator.permissions.query({ name: "geolocation" }).then((result) => {
         if (result.state === "granted") {
@@ -32,7 +32,7 @@ export function render_searchPlaces() {
           navigator.geolocation.getCurrentPosition(
             (pos) => {
               const { latitude, longitude } = pos.coords;
-              manage_map(latitude, longitude);
+              manageMap(latitude, longitude);
             },
             () => {}
           );
@@ -41,6 +41,7 @@ export function render_searchPlaces() {
         }
       });
     } catch (error) {
+      console.log(error);
       this.isLoading = false;
     }
   };
@@ -49,23 +50,21 @@ export function render_searchPlaces() {
     this.isLoading = true;
     this.hereMapsPlacesFound = [];
     this.hereMapsQuery = "";
-    manage_map(lat, lng);
+    manageMap(lat, lng);
   };
 
-  const handle_focus_input = () => {
+  const handleFocusInput = () => {
     this.debounced__request__get_coordinates_from_search(this.hereMapsQuery);
     if (this.hereMapsQuery.length) {
       this.filtersOpen = false;
     }
   };
 
-  // <li @click="${() => handleMoveToPlace(o.lat, o.lon)}" class="">
-
-  const render__places_list = () => {
+  const renderPlacesList = () => {
     return html`
       <div class="searchBox__resoult_list">
         <ul>
-          <li @click="${handle__move_to_current_position}" class="">
+          <li @click="${handleMoveToCurrentPosition}" class="">
             <img class="" src="${findPositionBlueIcon}" alt="" />
             ${t.my_location[this.language]}
           </li>
@@ -98,11 +97,11 @@ export function render_searchPlaces() {
         .filtersNumber="${filtersNumber}"
         .filtersAction="${this.handleSearchBarFilterAction}"
         .action="${handle_onchange}"
-        @focus=${handle_focus_input}
+        @focus=${handleFocusInput}
       ></wc-searchbar>
 
       ${this.hereMapsPlacesFound.length && this.hereMapsQuery.length
-        ? render__places_list()
+        ? renderPlacesList()
         : ""}
     </div>
   `;

@@ -74,6 +74,7 @@ class Parking extends BaseParking {
     await drawStationsOnMap.bind(this)();
 
     this.isLoading = false;
+    this.firstLoad = false;
   }
 
   handleChangeTab(id) {
@@ -85,7 +86,10 @@ class Parking extends BaseParking {
       if (propName === "mobileOpen" || propName === "isMobile") {
         this.map.invalidateSize();
       }
-      if (propName === "filters" || propName === "language") {
+      if (
+        (propName === "filters" || propName === "language") &&
+        !this.firstLoad
+      ) {
         this.map.off();
         this.map.remove();
         this.isLoading = true;

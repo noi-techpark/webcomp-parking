@@ -20,16 +20,17 @@ export function render__mapControls() {
     this.isLoading = true;
     try {
       const { coords } = await getCurrentPosition();
-      const { latitude, longitude } = coords;
-      console.log(latitude, longitude);
-
-      this.currentLocation = { lat: latitude, lng: longitude };
-      this.map.flyTo([latitude, longitude], 13);
-      // this.map.removeLayer(this.layer_columns);
-      this.map.removeLayer(this.layer_user);
-      drawUserOnMap.bind(this)();
+      if (coords) {
+        const { latitude, longitude } = coords;
+        console.log(latitude, longitude);
+        this.currentLocation = { lat: latitude, lng: longitude };
+        this.map.removeLayer(this.layer_user);
+        this.map.flyTo([latitude, longitude], 13);
+        drawUserOnMap.bind(this)();
+      }
       this.isLoading = false;
     } catch (error) {
+      console.log(error);
       this.isLoading = false;
     }
   };
