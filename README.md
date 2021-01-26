@@ -25,6 +25,9 @@ Include the webcompscript file `dist/webcomp-parking.js` in your HTML and define
     currentLocation='{ "lat": 46.31, "lng": 11.26 }'
     tiles-url="https://1.base.maps.ls.hereapi.com/maptile/2.1/maptile/newest/normal.day/{z}/{x}/{y}/256/png8?apiKey="
     disableParkingForecast="false"
+    disableParkingDirections
+    disableParkingForecast
+    disableParkingRealTime
 ></webcomp-parking>
 ```
 
@@ -74,21 +77,15 @@ Example: `"https://1.base.maps.ls.hereapi.com/maptile/2.1/maptile/newest/normal.
 
 #### disableParkingDirections
 
-If set to `"true"` the road directions are hidden. Default is `"false"`
-
-Example: `"true"`
+If set the road directions are hidden.
 
 #### disableParkingForecast
 
-If set to `"true"` the forecast graph is hidden. Default is `"false"`.
-
-Example: `"true"`
+If set the forecast graph is hidden.
 
 #### disableParkingRealTime
 
-If set to `"true"` the real time data are hidden. Default is `"false"`.
-
-Example: `"true"`
+If set the real time data are hidden.
 
 #### enabledParkingData
 
