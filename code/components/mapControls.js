@@ -22,7 +22,6 @@ export function render__mapControls() {
       const { coords } = await getCurrentPosition();
       if (coords) {
         const { latitude, longitude } = coords;
-        console.log(latitude, longitude);
         this.currentLocation = { lat: latitude, lng: longitude };
         this.map.removeLayer(this.layer_user);
         this.map.flyTo([latitude, longitude], 13);
