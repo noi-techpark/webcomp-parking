@@ -72,6 +72,12 @@ Set the URL of the API that provides the tiles.
 
 Example: `"https://1.base.maps.ls.hereapi.com/maptile/2.1/maptile/newest/normal.day/{z}/{x}/{y}/256/png8?apiKey="`
 
+#### disableParkingDirections
+
+If set to `"true"` the road directions are hidden. Default is `"false"`
+
+Example: `"true"`
+
 #### disableParkingForecast
 
 If set to `"true"` the forecast graph is hidden. Default is `"false"`.
