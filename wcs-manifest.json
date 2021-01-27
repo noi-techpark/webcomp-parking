@@ -94,29 +94,29 @@
       },
       {
         "key": "disableParkingForecast",
-        "type": "boolean",
+        "type": "null",
         "label": "If set the forecast graph is hidden.",
         "required": false,
         "options": {
-          "default": ""
+          "default": false
         }
       },
       {
         "key": "disableParkingRealTime",
-        "type": "boolean",
+        "type": "null",
         "label": "If set the realtime data are hidden.",
         "required": false,
         "options": {
-          "default": ""
+          "default": false
         }
       },
       {
         "key": "disableParkingDirections",
-        "type": "boolean",
+        "type": "null",
         "label": "If set the road directions are hidden.",
         "required": false,
         "options": {
-          "default": ""
+          "default": false
         }
       },
       {
