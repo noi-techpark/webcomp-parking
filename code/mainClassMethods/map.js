@@ -6,6 +6,7 @@ import user__marker from "../assets/user.svg";
 import {
   requestMobilityParking,
   requestMobilityParkingDetails,
+  requestTourismParking,
 } from "../api/parkingStations";
 import { getLatLongFromStationDetail, get_system_language } from "../utils";
 import stationIcon from "../assets/station.svg";
@@ -71,7 +72,14 @@ export function drawUserOnMap() {
 export async function drawStationsOnMap() {
   const stations_layer_array = [];
 
-  const parkingStations = await requestMobilityParking();
+  const parkingStations = this.enabledParkingData.includes("mobility")
+    ? await requestMobilityParking()
+    : undefined;
+  const tourismParkingStations = this.enabledParkingData.includes("tourism")
+    ? await requestTourismParking({
+        language: this.language,
+      })
+    : undefined;
 
   if (parkingStations) {
     Object.values(parkingStations.data.ParkingStation.stations)
@@ -121,6 +129,47 @@ export async function drawStationsOnMap() {
         marker.on("mousedown", action);
         stations_layer_array.push(marker);
       });
+  }
+
+  if (tourismParkingStations) {
+    tourismParkingStations.Items.map((station) => {
+      const marker_position = getLatLongFromStationDetail({
+        x: station.GpsPoints.position.Longitude,
+        y: station.GpsPoints.position.Latitude,
+      });
+      const station_icon = Leaflet.icon({
+        iconUrl: stationIcon,
+        iconSize: [36, 36],
+      });
+      const marker = Leaflet.marker(
+        [marker_position.lat, marker_position.lng],
+        {
+          icon: station_icon,
+        }
+      );
+
+      const action = async () => {
+        if (station) {
+          this.currentStation = {
+            scoordinate: marker_position,
+            sname: station.Detail[this.language].Title,
+            smetadata: {
+              mainaddress: `${station.ContactInfos[this.language].City} ${
+                station.ContactInfos[this.language].Address
+              }`,
+              municipality: "",
+            },
+            sdatatypes: undefined,
+          };
+        }
+
+        this.filtersOpen = false;
+        this.detailsOpen = true;
+      };
+
+      marker.on("mousedown", action);
+      stations_layer_array.push(marker);
+    });
   }
 
   const stations_layer = Leaflet.layerGroup(stations_layer_array, {});

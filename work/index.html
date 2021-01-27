@@ -41,14 +41,18 @@
             fontFamily="Arial"
             language="it"
             mapAttribution='Map Tiles &copy; <a href="http://developer.here.com">HERE</a>'
-            currentLocation='{ "lat": 46.31, "lng": 11.26 }'
+            -currentLocation='{ "lat": 46.31, "lng": 11.26 }'
             tiles-url="https://1.base.maps.ls.hereapi.com/maptile/2.1/maptile/newest/normal.day/{z}/{x}/{y}/256/png8?apiKey="
+            disableParkingForecast
+            disableParkingRealTime
+            disableParkingDirections
+            enabledParkingData='["mobility"]'
           ></webcomp-parking>
         </div>
       </div>
     </div>
 
-    <div class="container">
+    <!-- <div class="container">
       <div class="row">
         <div class="col-6 mt-5">
           <pre>width="300px" height="300px"</pre>
@@ -99,7 +103,7 @@
           ></webcomp-parking>
         </div>
       </div>
-    </div>
+    </div> -->
 
     <div class="mt-5"></div>
 

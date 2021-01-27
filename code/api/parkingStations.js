@@ -1,4 +1,19 @@
-import { BASE_PATH_MOBILITY } from "./config";
+import { BASE_PATH_MOBILITY, TOURISM_PATH_MOBILITY } from "./config";
+
+export const requestTourismParking = async ({ language }) => {
+  try {
+    const request = await fetch(
+      `${TOURISM_PATH_MOBILITY}/Poi?pagenumber=1&poitype=64&subtype=2&pagesize=1000&language=${language}&`
+    );
+    if (request.status !== 200) {
+      throw new Error(request.statusText);
+    }
+    const response = await request.json();
+    return response;
+  } catch (error) {
+    console.log(error);
+  }
+};
 
 export const requestMobilityParking = async () => {
   try {

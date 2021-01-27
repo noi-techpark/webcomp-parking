@@ -5,14 +5,45 @@ import Chart from "chart.js";
 import dayjs from "dayjs";
 
 export function render_details() {
-  console.log(this.currentStation);
   const { scoordinate, sname, smetadata, sdatatypes } = this.currentStation;
+  const { mainaddress, municipality } = smetadata;
+
+  if (sdatatypes === undefined) {
+    return html` <div class="details">
+      <div class="header">
+        <wc-sidemodal-header
+          .type="title"
+          .tTitle="${sname}"
+          .tLinkedTagText=""
+          .tOptionalLink="${{
+            text: t["directions"][this.language],
+            url: `http://www.google.com/maps/place/${scoordinate.y},${scoordinate.x}`,
+          }}"
+          .closeModalAction="${() => {
+            this.detailsOpen = false;
+          }}"
+        ></wc-sidemodal-header>
+      </div>
+      <div>
+        <wc-divider></wc-divider>
+      </div>
+      <div>
+        <div>
+          <p class="caption">${t["details"][this.language]}</p>
+        </div>
+        <wc-sidemodal-row
+          .type="${SIDE_MODAL_ROW_TYPES.vertical}"
+          .title="${t["address"][this.language]}"
+          .text="${mainaddress || municipality}"
+        ></wc-sidemodal-row>
+      </div>
+    </div>`;
+  }
 
   const occupiedSpots = sdatatypes["occupied"]
     ? sdatatypes["occupied"]["tmeasurements"][0]["mvalue"]
     : "---";
   const parkingCapacity = smetadata.capacity;
-  const { mainaddress, municipality } = smetadata;
 
   const forecast1 =
     sdatatypes["parking-forecast-60"]["tmeasurements"][0]["mvalue"];
@@ -26,7 +57,10 @@ export function render_details() {
   const now = dayjs();
 
   const checkIfTagInterval = setInterval(() => {
-    if (this.shadowRoot.getElementById("IDForecastChart")) {
+    if (
+      this.shadowRoot.getElementById("IDForecastChart") &&
+      !this.disableParkingForecast
+    ) {
       const forecastChart = new Chart(
         this.shadowRoot.getElementById("IDForecastChart"),
         {
@@ -81,10 +115,15 @@ export function render_details() {
         parkingCapacity - occupiedSpots <= 0
           ? t["tag__free"][this.language]
           : ""}"
-        .tOptionalLink="${{
-          text: t["directions"][this.language],
-          url: `http://www.google.com/maps/place/${scoordinate.y},${scoordinate.x}`,
-        }}"
+        .tOptionalLink="${!this.disableParkingDirections
+          ? {
+              text: t["directions"][this.language],
+              url: `http://www.google.com/maps/place/${scoordinate.y},${scoordinate.x}`,
+            }
+          : {
+              text: "",
+              url: "",
+            }}"
         .closeModalAction="${() => {
           this.detailsOpen = false;
         }}"
@@ -95,33 +134,38 @@ export function render_details() {
     </div>
     <div>
       <div>
-        <p class="caption">DETTAGLI</p>
+        <p class="caption">${t["details"][this.language]}</p>
       </div>
-      <wc-sidemodal-row
-        .type="${SIDE_MODAL_ROW_TYPES.horizontal}"
-        .title="${"Posti totali"}"
-        .text="${parkingCapacity}"
-      ></wc-sidemodal-row>
-      <wc-sidemodal-row
-        .type="${SIDE_MODAL_ROW_TYPES.horizontal}"
-        .title="${"Posti occupati"}"
-        .text="${occupiedSpots}"
-      ></wc-sidemodal-row>
+      ${!this.disableParkingRealTime
+        ? html`<wc-sidemodal-row
+              .type="${SIDE_MODAL_ROW_TYPES.horizontal}"
+              .title="${t["totalSeats"][this.language]}"
+              .text="${parkingCapacity}"
+            ></wc-sidemodal-row>
+            <wc-sidemodal-row
+              .type="${SIDE_MODAL_ROW_TYPES.horizontal}"
+              .title="${t["occupiedSeats"][this.language]}"
+              .text="${occupiedSpots}"
+            ></wc-sidemodal-row>`
+        : ""}
+
       <wc-sidemodal-row
         .type="${SIDE_MODAL_ROW_TYPES.vertical}"
-        .title="${"Indirizzo"}"
+        .title="${t["address"][this.language]}"
         .text="${mainaddress || municipality}"
       ></wc-sidemodal-row>
-      <div>
-        <p class="caption">PREVISIONI</p>
-      </div>
-      <div class="forecast_graph__container">
-        <canvas id="IDForecastChart" width="260" height="132"></canvas>
-      </div>
+
+      ${!this.disableParkingForecast
+        ? html`
+            <div>
+              <p class="caption">${t["forecasts"][this.language]}</p>
+
+              <div class="forecast_graph__container">
+                <canvas id="IDForecastChart" width="260" height="132"></canvas>
+              </div>
+            </div>
+          `
+        : ""}
     </div>
   </div>`;
 }
-
-// .tOptionalLink="${args.tOptionalLink}"
-// .tIcon="${args.tIcon}"
-// .tSubtitle="${data.subtitle}"
