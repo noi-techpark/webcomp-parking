@@ -14,7 +14,7 @@ export const observedProperties = {
   filters: { type: Object },
 
   hereMapsQuery: { type: String },
-  hereMapsPlacesFound: { type: Array },
+  searchPlacesFound: { type: Array },
   mapAttribution: { type: String },
 
   currentStation: { type: Object },
