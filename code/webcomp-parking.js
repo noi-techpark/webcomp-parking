@@ -108,7 +108,6 @@ class Parking extends BaseParking {
   }
 
   handleSearchBarFilterAction = () => {
-    console.log("Toggle filters");
     this.detailsOpen = false;
     this.filtersOpen = !this.filtersOpen;
   };

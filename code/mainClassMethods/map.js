@@ -9,7 +9,12 @@ import {
   requestTourismParking,
 } from "../api/parkingStations";
 import { getLatLongFromStationDetail, get_system_language } from "../utils";
-import stationIcon from "../assets/station.svg";
+import { getPin } from "./utils";
+// import stationIcon from "../assets/station.svg";
+// import greenIcon from "../assets/pins/green.svg";
+// import redIcon from "../assets/pins/red.svg";
+import greyIcon from "../assets/pins/grey.svg";
+// import orangeIcon from "../assets/pins/orange.svg";
 // import { CUSTOMstationCompetenceTypes } from "../webcomp-meteo-generic";
 
 export async function initializeMap() {
@@ -101,8 +106,9 @@ export async function drawStationsOnMap() {
         const marker_position = getLatLongFromStationDetail(
           station.scoordinate
         );
+
         const station_icon = Leaflet.icon({
-          iconUrl: stationIcon,
+          iconUrl: getPin(station.sdatatypes.free.tmeasurements[0].mvalue),
           iconSize: [36, 36],
         });
         const marker = Leaflet.marker(
@@ -138,7 +144,7 @@ export async function drawStationsOnMap() {
         y: station.GpsPoints.position.Latitude,
       });
       const station_icon = Leaflet.icon({
-        iconUrl: stationIcon,
+        iconUrl: greyIcon,
         iconSize: [36, 36],
       });
       const marker = Leaflet.marker(
