@@ -10,11 +10,8 @@ import {
 } from "../api/parkingStations";
 import { getLatLongFromStationDetail, get_system_language } from "../utils";
 import { getPin } from "./utils";
-// import stationIcon from "../assets/station.svg";
-// import greenIcon from "../assets/pins/green.svg";
-// import redIcon from "../assets/pins/red.svg";
 import greyIcon from "../assets/pins/grey.svg";
-// import orangeIcon from "../assets/pins/orange.svg";
+
 // import { CUSTOMstationCompetenceTypes } from "../webcomp-meteo-generic";
 
 export async function initializeMap() {
@@ -123,8 +120,10 @@ export async function drawStationsOnMap() {
             scode: station.scode,
           });
           if (details) {
+            console.log(station.sdatatypes.free.tmeasurements[0].mvalidtime);
             this.currentStation = {
               ...details.data.ParkingStation.stations[station.scode],
+              lastChange: station.sdatatypes.free.tmeasurements[0].mvalidtime,
             };
           }
 
@@ -156,6 +155,7 @@ export async function drawStationsOnMap() {
 
       const action = async () => {
         if (station) {
+          console.log(station.LastChange);
           this.currentStation = {
             scoordinate: marker_position,
             sname: station.Detail[this.language].Title,
@@ -166,6 +166,7 @@ export async function drawStationsOnMap() {
               municipality: "",
             },
             sdatatypes: undefined,
+            lastChange: station.LastChange,
           };
         }
 
