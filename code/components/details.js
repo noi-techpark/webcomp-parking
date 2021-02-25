@@ -14,8 +14,6 @@ export function render_details() {
   } = this.currentStation;
   const { mainaddress, municipality } = smetadata;
 
-  console.log(lastChange);
-
   if (sdatatypes === undefined) {
     return html` <div class="details">
       <div class="header">

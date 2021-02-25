@@ -120,7 +120,6 @@ export async function drawStationsOnMap() {
             scode: station.scode,
           });
           if (details) {
-            console.log(station.sdatatypes.free.tmeasurements[0].mvalidtime);
             this.currentStation = {
               ...details.data.ParkingStation.stations[station.scode],
               lastChange: station.sdatatypes.free.tmeasurements[0].mvalidtime,
@@ -155,7 +154,6 @@ export async function drawStationsOnMap() {
 
       const action = async () => {
         if (station) {
-          console.log(station.LastChange);
           this.currentStation = {
             scoordinate: marker_position,
             sname: station.Detail[this.language].Title,
