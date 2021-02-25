@@ -1,12 +1,20 @@
+import Chart from "chart.js";
+import dayjs from "dayjs";
 import { html } from "lit-element";
 import { SIDE_MODAL_ROW_TYPES } from "../shared_components/sideModalRow/sideModalRow";
 import { t } from "../translations";
-import Chart from "chart.js";
-import dayjs from "dayjs";
 
 export function render_details() {
-  const { scoordinate, sname, smetadata, sdatatypes } = this.currentStation;
+  const {
+    scoordinate,
+    sname,
+    smetadata,
+    sdatatypes,
+    lastChange,
+  } = this.currentStation;
   const { mainaddress, municipality } = smetadata;
+
+  console.log(lastChange);
 
   if (sdatatypes === undefined) {
     return html` <div class="details">
@@ -35,6 +43,11 @@ export function render_details() {
           .type="${SIDE_MODAL_ROW_TYPES.vertical}"
           .title="${t["address"][this.language]}"
           .text="${mainaddress || municipality}"
+        ></wc-sidemodal-row>
+        <wc-sidemodal-row
+          .type="${SIDE_MODAL_ROW_TYPES.vertical}"
+          .title="${t["lastUpdate"][this.language]}"
+          .text="${dayjs(lastChange).format("DD/MM/YYYY hh:mm")}"
         ></wc-sidemodal-row>
       </div>
     </div>`;
@@ -153,6 +166,12 @@ export function render_details() {
         .type="${SIDE_MODAL_ROW_TYPES.vertical}"
         .title="${t["address"][this.language]}"
         .text="${mainaddress || municipality}"
+      ></wc-sidemodal-row>
+
+      <wc-sidemodal-row
+        .type="${SIDE_MODAL_ROW_TYPES.vertical}"
+        .title="${t["lastUpdate"][this.language]}"
+        .text="${dayjs(lastChange).format("DD/MM/YYYY hh:mm")}"
       ></wc-sidemodal-row>
 
       ${!this.disableParkingForecast

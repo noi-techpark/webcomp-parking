@@ -67,4 +67,9 @@ export const t = {
     de: "Besetzte Plätze",
   },
   address: { it: "Indirizzo", en: "Address", de: "Adresse" },
+  lastUpdate: {
+    it: "Ultimo aggiornamento",
+    en: "Last update",
+    de: "Letztes Update",
+  },
 };
