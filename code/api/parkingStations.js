@@ -31,8 +31,6 @@ export const requestMobilityParking = async () => {
 };
 
 export const requestMobilityParkingDetails = async ({ scode }) => {
-  console.log(scode);
-
   try {
     const request = await fetch(
       `${BASE_PATH_MOBILITY}/tree,node/ParkingStation/*/latest?where=sactive.eq.true,scode.eq."${scode}"&select=scoordinate,smetadata,scode,sdatatypes,sname`
