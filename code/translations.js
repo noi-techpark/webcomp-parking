@@ -7,12 +7,12 @@ export const t = {
   search: {
     it: "Cerca",
     en: "Seach",
-    de: "Seach",
+    de: "Suche",
   },
   my_location: {
     it: "La mia posizione",
     en: "My location",
-    de: "My location",
+    de: "Mein Standort",
   },
   tag__free: {
     it: "Libero",
