@@ -2,11 +2,11 @@ export const t = {
   openTheMap: {
     it: "Apri la mappa",
     en: "Open the map",
-    de: "Öffnen Sie die Karte",
+    de: "Öffne die Karte",
   },
   search: {
     it: "Cerca",
-    en: "Seach",
+    en: "Search",
     de: "Suche",
   },
   my_location: {
@@ -24,7 +24,6 @@ export const t = {
     en: "Directions",
     de: "Richtungen",
   },
-  // Filetrs
   filters: {
     it: "Filtri",
     en: "Filters",
@@ -33,7 +32,7 @@ export const t = {
   cancelFilters: {
     it: "Annulla filtri",
     en: "Cancel filters",
-    de: "Filter abbrechen",
+    de: "Filter verwerfen",
   },
   availability: {
     it: "DISPONIBILITÀ",
@@ -43,7 +42,7 @@ export const t = {
   onlyShowParkingSpacesWithAvailableSpots: {
     it: "Mostra solo percheggi con posti disponibili",
     en: "Only show parking spaces with available spots",
-    de: "Nur Parkplätze mit verfügbaren Sitzplätzen anzeigen",
+    de: "Nur Parkplätze mit verfügbaren Plätzen anzeigen",
   },
   details: {
     it: "DETTAGLI",
@@ -66,7 +65,11 @@ export const t = {
     en: "Occupied seats",
     de: "Besetzte Plätze",
   },
-  address: { it: "Indirizzo", en: "Address", de: "Adresse" },
+  address: {
+    it: "Indirizzo",
+    en: "Address",
+    de: "Adresse"
+  },
   lastUpdate: {
     it: "Ultimo aggiornamento",
     en: "Last update",
