@@ -25,7 +25,6 @@ pipeline {
             steps {
                 sh '''
                     rm -rf dist node_modules
-                    yarn cache clean
                 '''
             }
         }
