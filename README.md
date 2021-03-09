@@ -129,7 +129,7 @@ Create a `.env` file in the main directory.
 Fill it with this content:
 
 ```
-TILES_API_KEY=YourKey
+HEREMAP_API_KEY=YourKey
 ```
 
 Replace `YourKey` with your API token to use the tiles and the search bar.
