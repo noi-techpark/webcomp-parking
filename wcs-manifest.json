@@ -1,5 +1,5 @@
 {
-  "title": "Parking Webcomponent",
+  "title": "Parking",
   "description": "A widget that allows to easily integrate the list or the map view of the parking lots that are located in all South Tyrol or near a certain location.",
   "descriptionAbstract": "This web component shows all parking lots provided by the Open Data Hub.",
   "license": "AGPL-3.0-or-later",
@@ -20,7 +20,7 @@
     }
   ],
   "image": "wcs-logo.png",
-  "searchTags": ["parking"],
+  "searchTags": ["parking","mobility"],
   "dist": {
     "basePath": "dist",
     "files": ["webcomp-parking.js"]
