@@ -20,7 +20,7 @@
     }
   ],
   "image": "wcs-logo.png",
-  "searchTags": ["parking","mobility"],
+  "searchTags": ["parking","mobility","map","real time"],
   "dist": {
     "basePath": "dist",
     "files": ["webcomp-parking.js"]
