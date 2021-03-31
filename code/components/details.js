@@ -21,7 +21,8 @@ export function render_details() {
           .type="title"
           .tTitle="${sname}"
           .tLinkedTagText=""
-          .tOptionalLink="${scoordinate.lat !== undefined &&
+          .tOptionalLink="${!this.disableParkingDirections &&
+          scoordinate.lat !== undefined &&
           scoordinate.lng !== undefined
             ? {
                 text: t["directions"][this.language],
