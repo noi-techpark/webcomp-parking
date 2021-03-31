@@ -40,12 +40,12 @@
             height="500px"
             fontFamily="Arial"
             language="it"
-            mapAttribution='Map Tiles &copy; <a href="http://developer.here.com">HERE</a>'
+            mapAttribution='&copy; <a href="https://openstreetmap.org/copyright">OpenStreetMap contributors</a>'
             -currentLocation='{ "lat": 46.31, "lng": 11.26 }'
-            tiles-url="https://1.base.maps.ls.hereapi.com/maptile/2.1/maptile/newest/normal.day/{z}/{x}/{y}/256/png8?apiKey="
+            tiles-url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
             disableParkingForecast
-            disableParkingRealTime
-            disableParkingDirections
+            -disableParkingRealTime
+            -disableParkingDirections
             enabledParkingData='["mobility","tourism"]'
           ></webcomp-parking>
         </div>
