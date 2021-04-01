@@ -129,17 +129,21 @@ class Parking extends BaseParking {
     if (this.width.includes("px")) {
       isSmallWidth = parseInt(this.width.replace("px")) <= 400;
     } else if (this.width.includes("%")) {
-      if (this.shadowRoot.querySelector(".meteo_generic")) {
+      if (this.shadowRoot.querySelector(".parking")) {
         isSmallWidth =
-          this.shadowRoot.querySelector(".meteo_generic").clientWidth <= 400;
+          this.shadowRoot.querySelector(".parking").clientWidth <= 400;
       }
     }
+
+    let height = `${this.height}`;
+
     if (this.height.includes("px")) {
       isSmallHeight = parseInt(this.height.replace("px")) <= 400;
     } else if (this.height.includes("%")) {
-      if (this.shadowRoot.querySelector(".meteo_generic")) {
+      if (this.shadowRoot.querySelector(".parking")) {
+        height = `${this.shadowRoot.querySelector(".parking").clientHeight}px`;
         isSmallHeight =
-          this.shadowRoot.querySelector(".meteo_generic").clientHeight <= 400;
+          this.shadowRoot.querySelector(".parking").clientHeight <= 400;
       }
     }
 
@@ -147,7 +151,7 @@ class Parking extends BaseParking {
       <style>
         * {
           --width: ${this.width};
-          --height: ${this.height};
+          --height: ${height};
           --w-c-font-family: ${this.fontFamily};
         }
       </style>
