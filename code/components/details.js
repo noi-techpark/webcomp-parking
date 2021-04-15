@@ -21,10 +21,14 @@ export function render_details() {
           .type="title"
           .tTitle="${sname}"
           .tLinkedTagText=""
-          .tOptionalLink="${{
-            text: t["directions"][this.language],
-            url: `http://www.google.com/maps/place/${scoordinate.y},${scoordinate.x}`,
-          }}"
+          .tOptionalLink="${!this.disableParkingDirections &&
+          scoordinate.lat !== undefined &&
+          scoordinate.lng !== undefined
+            ? {
+                text: t["directions"][this.language],
+                url: `http://www.google.com/maps/place/${scoordinate.lat},${scoordinate.lng}`,
+              }
+            : undefined}"
           .closeModalAction="${() => {
             this.detailsOpen = false;
           }}"
@@ -126,15 +130,14 @@ export function render_details() {
         parkingCapacity - occupiedSpots <= 0
           ? t["tag__free"][this.language]
           : ""}"
-        .tOptionalLink="${!this.disableParkingDirections
+        .tOptionalLink="${!this.disableParkingDirections &&
+        scoordinate.y !== undefined &&
+        scoordinate.x !== undefined
           ? {
               text: t["directions"][this.language],
               url: `http://www.google.com/maps/place/${scoordinate.y},${scoordinate.x}`,
             }
-          : {
-              text: "",
-              url: "",
-            }}"
+          : undefined}"
         .closeModalAction="${() => {
           this.detailsOpen = false;
         }}"
