@@ -1,9 +1,9 @@
 import "@babel/polyfill";
 import leafletStyle from "leaflet/dist/leaflet.css";
-import { css, html, LitElement, unsafeCSS } from "lit-element";
+import { css, html, unsafeCSS } from "lit-element";
 import { classMap } from "lit-html/directives/class-map";
 import { debounce as _debounce } from "lodash";
-import { requestGetCoordinatesFromSearch } from "./api/hereMaps";
+import { requestGetCoordinatesFromSearch } from "./api/poi";
 import { BaseParking } from "./baseClass";
 import { render_details } from "./components/details";
 import { render_filters } from "./components/filters";
