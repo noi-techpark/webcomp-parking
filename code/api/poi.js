@@ -6,7 +6,7 @@ export async function requestGetCoordinatesFromSearch(query) {
     if (query) {
       let formattedTourismParkingStationsData = [];
       const tourismParkingStationsRequest = await fetch(
-        `${TOURISM_PATH_MOBILITY}/Poi?pagenumber=1&poitype=64&subtype=2&pagesize=-1?searchfilter=${query}`
+        `${TOURISM_PATH_MOBILITY}/Poi?pagenumber=1&poitype=64&subtype=2&pagesize=-1&searchfilter=${query}`
       );
       const tourismParkingStationsResponse = await tourismParkingStationsRequest.json();
       if (tourismParkingStationsResponse.Items) {
