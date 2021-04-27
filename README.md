@@ -1,5 +1,7 @@
 # Parking - Web component
 
+[![REUSE status](https://api.reuse.software/badge/github.com/noi-techpark/webcomp-parking)](https://api.reuse.software/info/github.com/noi-techpark/webcomp-parking)
+
 A web component that shows the parking area stored in the Open Data Hub.
 
 ## Table of contents
