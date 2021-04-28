@@ -28,7 +28,7 @@ import "./shared_components/sideModalTabs/sideModalTabs";
 import "./shared_components/tag/tag";
 import { t } from "./translations";
 import { isMobile, LANGUAGES } from "./utils";
-import ParkingStyle from "./webcomp-parking.scss";
+import ParkingStyle from "./odh-parking.scss";
 
 class Parking extends BaseParking {
   static get properties() {
@@ -220,5 +220,5 @@ class Parking extends BaseParking {
   }
 }
 
-customElements.get("webcomp-parking") ||
-  customElements.define("webcomp-parking", Parking);
+customElements.get("odh-parking") ||
+  customElements.define("odh-parking", Parking);

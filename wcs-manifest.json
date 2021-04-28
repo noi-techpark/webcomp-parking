@@ -23,10 +23,16 @@
   "searchTags": ["parking","mobility","map","real time"],
   "dist": {
     "basePath": "dist",
-    "files": ["webcomp-parking.js"]
+    "files": ["odh-parking.js"],
+    "scripts": [
+      {
+        "file": "odh-parking.js",
+        "parameter": ""
+      }
+    ]
   },
   "configuration": {
-    "tagName": "webcomp-parking",
+    "tagName": "odh-parking",
     "options": [
       {
         "key": "width",

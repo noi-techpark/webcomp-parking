@@ -2,7 +2,7 @@ pipeline {
 	agent any
 	environment {
 		DOCKER_IMAGE = "755952719952.dkr.ecr.eu-west-1.amazonaws.com/webcompbuild:latest"
-		HEREMAP_API_KEY = credentials("here-api-key")
+		HEREMAPS_API_KEY = credentials("here-api-key")
 	}
 	options {
 		ansiColor('xterm')
@@ -28,7 +28,7 @@ pipeline {
 						sh '''
 							cp /webcompbuild/.env .env
 							rm -rf $(jq -r ".dist.basePath" wcs-manifest.json)
-							echo "HEREMAP_API_KEY=$HEREMAP_API_KEY" >> .env
+							echo "HEREMAPS_API_KEY=$HEREMAPS_API_KEY" >> .env
 						'''
 					}
 				}
@@ -55,7 +55,6 @@ pipeline {
 					steps {
 						sshagent (credentials: ['tomcatkey', 'jenkins_github_ssh_key']) {
 							sh '''
-								cp /webcompbuild/.env .env
 								WHEN=$(date "+%Y%m%dT%H%M")
 								WC_NAME=${GIT_URL##*/}
 								WC_NAME=${WC_NAME%.git}
