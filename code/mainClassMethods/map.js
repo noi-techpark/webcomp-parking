@@ -114,6 +114,7 @@ export async function drawStationsOnMap() {
         );
 
         const action = async () => {
+          this.searchPlacesFound = {};
           const details = await requestMobilityParkingDetails({
             scode: station.scode,
           });
@@ -152,6 +153,7 @@ export async function drawStationsOnMap() {
 
       const action = async () => {
         if (station) {
+          this.searchPlacesFound = {};
           this.currentStation = {
             scoordinate: marker_position,
             sname: station.Detail[this.language].Title,

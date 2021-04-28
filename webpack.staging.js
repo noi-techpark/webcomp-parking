@@ -1,15 +1,19 @@
 const path = require("path");
 const webpack = require("webpack");
-const Dotenv = require("dotenv-webpack");
+var dotenv = require("dotenv").config({ path: __dirname + "/.env" });
 
 module.exports = {
   mode: "production",
-  entry: path.resolve(__dirname, "./code/webcomp-parking.js"),
+  entry: path.resolve(__dirname, "./code/odh-parking.js"),
   output: {
     path: path.resolve(__dirname, "./work/scripts"),
-    filename: "webcomp-parking.js",
+    filename: "odh-parking.js",
   },
-  plugins: [new Dotenv()],
+  plugins: [
+    new webpack.DefinePlugin({
+      "process.env.DOTENV": JSON.stringify(dotenv.parsed),
+    }),
+  ],
   module: {
     rules: [
       {

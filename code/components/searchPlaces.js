@@ -5,18 +5,19 @@ import { t } from "../translations";
 export function render_searchPlaces() {
   const handle_onchange = (value) => {
     if (value) {
+      this.detailsOpen = false;
       this.hereMapsQuery = value;
       this.debounced__request__get_coordinates_from_search(value);
       this.filtersOpen = false;
     } else {
-      this.searchPlacesFound = [];
+      this.searchPlacesFound = {};
     }
   };
 
   const manageMap = (lat, lng) => {
     this.currentLocation = { lat: parseFloat(lat), lng: parseFloat(lng) };
     this.current_station = {};
-    this.searchPlacesFound = [];
+    this.searchPlacesFound = {};
     this.filtersOpen = false;
     this.map.flyTo([lat, lng], 15);
     this.map.removeLayer(this.layer_user);
@@ -48,7 +49,7 @@ export function render_searchPlaces() {
 
   const handleMoveToPlace = (lat, lng) => {
     this.isLoading = true;
-    this.searchPlacesFound = [];
+    this.searchPlacesFound = {};
     this.hereMapsQuery = "";
     manageMap(lat, lng);
   };
@@ -60,7 +61,8 @@ export function render_searchPlaces() {
     }
   };
 
-  const renderPlacesList = () => {
+  const render__places_list = () => {
+    const keys = Object.keys(this.searchPlacesFound);
     return html`
       <div class="searchBox__resoult_list">
         <ul>
@@ -68,16 +70,26 @@ export function render_searchPlaces() {
             <img class="" src="${findPositionBlueIcon}" alt="" />
             ${t.my_location[this.language]}
           </li>
-          ${this.searchPlacesFound.map((o) => {
-            return html`
-              <li
-                @click="${() =>
-                  handleMoveToPlace(o.position[0], o.position[1])}"
-                class=""
-              >
-                ${o.title}
-              </li>
-            `;
+          ${keys.map((key) => {
+            if (this.searchPlacesFound[key].length) {
+              return html`
+                <span class="caption uppercase bold block mt-16px">${key}</span>
+                ${this.searchPlacesFound[key].map((o) => {
+                  return html`
+                    <li
+                      @click="${async () => {
+                        this.detailsOpen = false;
+                        handleMoveToPlace(o.position[0], o.position[1]);
+                      }}"
+                      class=""
+                    >
+                      ${o.title}
+                    </li>
+                  `;
+                })}
+              `;
+            }
+            return html``;
           })}
         </ul>
       </div>
@@ -88,6 +100,17 @@ export function render_searchPlaces() {
   if (this.filters.availability) {
     filtersNumber = filtersNumber + 1;
   }
+
+  const checkIfPlacesFound = (results) => {
+    const keys = Object.keys(results);
+    for (let i = 0; i < keys.length; i++) {
+      const k = keys[i];
+      if (results[k].length) {
+        return true;
+      }
+    }
+    return false;
+  };
 
   return html`
     <div class="searchBox">
@@ -100,8 +123,8 @@ export function render_searchPlaces() {
         @focus=${handleFocusInput}
       ></wc-searchbar>
 
-      ${this.searchPlacesFound.length && this.hereMapsQuery.length
-        ? renderPlacesList()
+      ${checkIfPlacesFound(this.searchPlacesFound) && this.hereMapsQuery.length
+        ? render__places_list()
         : ""}
     </div>
   `;

@@ -1,9 +1,9 @@
 import "@babel/polyfill";
 import leafletStyle from "leaflet/dist/leaflet.css";
-import { css, html, LitElement, unsafeCSS } from "lit-element";
+import { css, html, unsafeCSS } from "lit-element";
 import { classMap } from "lit-html/directives/class-map";
 import { debounce as _debounce } from "lodash";
-import { requestGetCoordinatesFromSearch } from "./api/hereMaps";
+import { requestGetCoordinatesFromSearch } from "./api/poi";
 import { BaseParking } from "./baseClass";
 import { render_details } from "./components/details";
 import { render_filters } from "./components/filters";
@@ -28,7 +28,7 @@ import "./shared_components/sideModalTabs/sideModalTabs";
 import "./shared_components/tag/tag";
 import { t } from "./translations";
 import { isMobile, LANGUAGES } from "./utils";
-import ParkingStyle from "./webcomp-parking.scss";
+import ParkingStyle from "./odh-parking.scss";
 
 class Parking extends BaseParking {
   static get properties() {
@@ -129,17 +129,21 @@ class Parking extends BaseParking {
     if (this.width.includes("px")) {
       isSmallWidth = parseInt(this.width.replace("px")) <= 400;
     } else if (this.width.includes("%")) {
-      if (this.shadowRoot.querySelector(".meteo_generic")) {
+      if (this.shadowRoot.querySelector(".parking")) {
         isSmallWidth =
-          this.shadowRoot.querySelector(".meteo_generic").clientWidth <= 400;
+          this.shadowRoot.querySelector(".parking").clientWidth <= 400;
       }
     }
+
+    let height = `${this.height}`;
+
     if (this.height.includes("px")) {
       isSmallHeight = parseInt(this.height.replace("px")) <= 400;
     } else if (this.height.includes("%")) {
-      if (this.shadowRoot.querySelector(".meteo_generic")) {
+      if (this.shadowRoot.querySelector(".parking")) {
+        height = `${this.shadowRoot.querySelector(".parking").clientHeight}px`;
         isSmallHeight =
-          this.shadowRoot.querySelector(".meteo_generic").clientHeight <= 400;
+          this.shadowRoot.querySelector(".parking").clientHeight <= 400;
       }
     }
 
@@ -147,7 +151,7 @@ class Parking extends BaseParking {
       <style>
         * {
           --width: ${this.width};
-          --height: ${this.height};
+          --height: ${height};
           --w-c-font-family: ${this.fontFamily};
         }
       </style>
@@ -216,5 +220,5 @@ class Parking extends BaseParking {
   }
 }
 
-customElements.get("webcomp-parking") ||
-  customElements.define("webcomp-parking", Parking);
+customElements.get("odh-parking") ||
+  customElements.define("odh-parking", Parking);

@@ -1,22 +1,50 @@
 # Parking - Web component
 
+[![REUSE status](https://api.reuse.software/badge/github.com/noi-techpark/webcomp-parking)](https://api.reuse.software/info/github.com/noi-techpark/webcomp-parking)
+
 A web component that shows the parking area stored in the Open Data Hub.
 
-## Table of contents
+Do you want to see it in action? Go to our [web component store](https://webcomponents.opendatahub.bz.it/webcomponent/543ed85d-8280-4240-8625-4ee5102710ff)!
 
-- [Usage](#usage)
-- [Gettings started](#getting-started)
-- [Deployment](#deployment)
-- [Docker environment](#docker-environment)
-- [Information](#information)
-<!-- - [Tests and linting](#tests-and-linting) -->
+- [Parking - Web component](#parking---web-component)
+  - [Usage](#usage)
+    - [Attributes](#attributes)
+      - [width](#width)
+      - [height](#height)
+      - [fontFamily](#fontfamily)
+      - [language](#language)
+      - [mapAttribution](#mapattribution)
+      - [currentLocation](#currentlocation)
+      - [tiles-url](#tiles-url)
+      - [disableParkingDirections](#disableparkingdirections)
+      - [disableParkingForecast](#disableparkingforecast)
+      - [disableParkingRealTime](#disableparkingrealtime)
+      - [enabledParkingData](#enabledparkingdata)
+  - [Getting started](#getting-started)
+    - [Prerequisites](#prerequisites)
+    - [Source code](#source-code)
+    - [.env](#env)
+    - [Dependencies](#dependencies)
+    - [Build](#build)
+  - [Docker environment](#docker-environment)
+    - [Installation](#installation)
+    - [Dependenices](#dependenices)
+    - [Start and stop the containers](#start-and-stop-the-containers)
+    - [Running commands inside the container](#running-commands-inside-the-container)
+  - [Information](#information)
+    - [Support](#support)
+    - [Contributing](#contributing)
+    - [Documentation](#documentation)
+    - [Boilerplate](#boilerplate)
+    - [License](#license)
+
 
 ## Usage
 
-Include the webcompscript file `dist/webcomp-parking.js` in your HTML and define the web component like this:
+Include the webcompscript file `dist/odh-parking.js` in your HTML and define the web component like this:
 
 ```html
-<webcomp-parking
+<odh-parking
     width="100%"
     height="500px"
     fontFamily="Arial"
@@ -28,7 +56,7 @@ Include the webcompscript file `dist/webcomp-parking.js` in your HTML and define
     disableParkingDirections
     disableParkingForecast
     disableParkingRealTime
-></webcomp-parking>
+></odh-parking>
 ```
 
 ### Attributes
