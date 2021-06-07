@@ -19,9 +19,8 @@ export function render_searchPlaces() {
     this.current_station = {};
     this.searchPlacesFound = {};
     this.filtersOpen = false;
-    this.map.flyTo([lat, lng], 15);
+    this.map.flyTo([lat, lng]);
     this.map.removeLayer(this.layer_user);
-    this.drawMap();
     this.isLoading = false;
   };
 

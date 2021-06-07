@@ -20,6 +20,7 @@ export class BaseParking extends LitElement {
 
     this.map = undefined;
     this.currentLocation = { lat: 46.479, lng: 11.331 };
+    this.zoom = 10;
 
     this.searchPlacesFound = {};
     this.hereMapsQuery = "";

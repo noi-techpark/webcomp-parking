@@ -81,6 +81,15 @@
         }
       },
       {
+        "key": "zoom",
+        "type": "number",
+        "label": "Zoom of the map",
+        "required": true,
+        "options": {
+          "default": 10
+        }
+      },
+      {
         "key": "mapAttribution",
         "type": "text",
         "label": "Attribution text for the tiles, can contain html (without double-quotes)",

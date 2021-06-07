@@ -32,7 +32,7 @@ export async function initializeMap() {
 
   this.map.setView(
     { lat: this.currentLocation.lat, lon: this.currentLocation.lng },
-    10
+    parseInt(this.zoom)
   );
 }
 
