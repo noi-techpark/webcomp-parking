@@ -249,7 +249,7 @@ docker-compose run --rm app /bin/bash -c "yarn start"
 
 ### Support
 
-ToDo: For support, please contact [help@opendatahub.bz.it](mailto:help@opendatahub.bz.it).
+For support, please contact [help@opendatahub.bz.it](mailto:help@opendatahub.bz.it).
 
 ### Contributing
 
