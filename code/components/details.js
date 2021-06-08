@@ -167,7 +167,7 @@ export function render_details() {
       <wc-sidemodal-row
         .type="${SIDE_MODAL_ROW_TYPES.vertical}"
         .title="${t["lastUpdate"][this.language]}"
-        .text="${dayjs(lastChange).format("DD/MM/YYYY hh:mm")}"
+        .text="${dayjs(lastChange).format("DD/MM/YYYY HH:mm")}"
       ></wc-sidemodal-row>
 
       ${!this.disableParkingForecast
