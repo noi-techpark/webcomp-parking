@@ -46,11 +46,6 @@ export function render_details() {
           .title="${t["address"][this.language]}"
           .text="${mainaddress || municipality}"
         ></wc-sidemodal-row>
-        <wc-sidemodal-row
-          .type="${SIDE_MODAL_ROW_TYPES.vertical}"
-          .title="${t["lastUpdate"][this.language]}"
-          .text="${dayjs(lastChange).format("DD/MM/YYYY hh:mm")}"
-        ></wc-sidemodal-row>
       </div>
     </div>`;
   }

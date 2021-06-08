@@ -2,7 +2,7 @@ export const t = {
   openTheMap: {
     it: "Apri la mappa",
     en: "Open the map",
-    de: "Öffne die Karte",
+    de: "Karte öffnen",
   },
   search: {
     it: "Cerca",
@@ -58,7 +58,7 @@ export const t = {
   totalSeats: {
     it: "Posti totali",
     en: "Total seats",
-    de: "Gesamtzahl der Sitzplätze",
+    de: "Anzahl Parkplätze",
   },
   occupiedSeats: {
     it: "Posti occupati",
