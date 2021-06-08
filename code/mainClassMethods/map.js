@@ -8,11 +8,9 @@ import {
   requestMobilityParkingDetails,
   requestTourismParking,
 } from "../api/parkingStations";
-import { getLatLongFromStationDetail, get_system_language } from "../utils";
+import { getLatLongFromStationDetail } from "../utils";
 import { getPin } from "./utils";
-import greyIcon from "../assets/pins/grey.svg";
-
-// import { CUSTOMstationCompetenceTypes } from "../webcomp-meteo-generic";
+import blueIcon from "../assets/pins/blue.svg";
 
 export async function initializeMap() {
   const DefaultIcon = Leaflet.icon({
@@ -102,14 +100,12 @@ export async function drawStationsOnMap() {
           station.scoordinate
         );
 
-        const station_icon = Leaflet.icon({
-          iconUrl: getPin(station.sdatatypes.free.tmeasurements[0].mvalue),
-          iconSize: [36, 36],
-        });
+        const realtimeFreePlaces = station.sdatatypes.free.tmeasurements[0].mvalue
+
         const marker = Leaflet.marker(
           [marker_position.lat, marker_position.lng],
           {
-            icon: station_icon,
+            icon: getPin(realtimeFreePlaces),
           }
         );
 
@@ -140,14 +136,10 @@ export async function drawStationsOnMap() {
         x: station.GpsPoints.position.Longitude,
         y: station.GpsPoints.position.Latitude,
       });
-      const station_icon = Leaflet.icon({
-        iconUrl: greyIcon,
-        iconSize: [36, 36],
-      });
       const marker = Leaflet.marker(
         [marker_position.lat, marker_position.lng],
         {
-          icon: station_icon,
+          icon: getPin(-1),
         }
       );
 
