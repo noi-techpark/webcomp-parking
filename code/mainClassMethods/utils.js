@@ -15,7 +15,6 @@ export const getPin = (mvalue) => {
     pin = redIcon;
     hasRealtimeData = true;
   }
-  pin = greenIcon;
 
   let dotdiv = hasRealtimeData ? '<div class="custom-div-icon-dot"></div>' : ""
 

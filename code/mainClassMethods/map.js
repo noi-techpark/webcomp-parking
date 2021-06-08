@@ -10,7 +10,6 @@ import {
 } from "../api/parkingStations";
 import { getLatLongFromStationDetail } from "../utils";
 import { getPin } from "./utils";
-import blueIcon from "../assets/pins/blue.svg";
 
 export async function initializeMap() {
   const DefaultIcon = Leaflet.icon({
@@ -177,7 +176,7 @@ export async function drawStationsOnMap() {
     iconCreateFunction(cluster) {
       return Leaflet.divIcon({
         html: `<div class="marker_cluster__marker">${cluster.getChildCount()}</div>`,
-        iconSize: Leaflet.point(36, 36),
+        iconSize: Leaflet.point(30, 30),
       });
     },
   });
