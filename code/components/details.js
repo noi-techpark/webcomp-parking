@@ -172,7 +172,7 @@ export function render_details() {
       </div>
 
       <div class='legend'>
-        <div style='top: 10px; left: 0' class="custom-div-icon-dot"></div>
+        <div style='top: 11px !important; left: 0' class="custom-div-icon-dot"></div>
         <span>&mapstoleft; ${t["pulsingDot"][this.language]}</span>
       </div>
 
