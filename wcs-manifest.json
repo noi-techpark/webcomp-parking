@@ -117,30 +117,12 @@
         }
       },
       {
-        "key": "disableParkingRealTime",
-        "type": "null",
-        "label": "If set the realtime data are hidden.",
-        "required": false,
-        "options": {
-          "default": false
-        }
-      },
-      {
         "key": "disableParkingDirections",
         "type": "null",
         "label": "If set the road directions are hidden.",
         "required": false,
         "options": {
           "default": false
-        }
-      },
-      {
-        "key": "enabledParkingData",
-        "type": "text",
-        "label": "Set the datasets to use in the component. Default is '[\"tourism\", \"mobility\"]'",
-        "required": false,
-        "options": {
-          "default": "[\"tourism\", \"mobility\"]"
         }
       }
     ]

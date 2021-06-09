@@ -145,19 +145,16 @@ export function render_details() {
       <div>
         <p class="caption">${t["details"][this.language]}</p>
       </div>
-      ${!this.disableParkingRealTime
-        ? html`<wc-sidemodal-row
-              .type="${SIDE_MODAL_ROW_TYPES.horizontal}"
-              .title="${t["totalSeats"][this.language]}"
-              .text="${parkingCapacity}"
-            ></wc-sidemodal-row>
-            <wc-sidemodal-row
-              .type="${SIDE_MODAL_ROW_TYPES.horizontal}"
-              .title="${t["occupiedSeats"][this.language]}"
-              .text="${occupiedSpots}"
-            ></wc-sidemodal-row>`
-        : ""}
-
+      <wc-sidemodal-row
+        .type="${SIDE_MODAL_ROW_TYPES.horizontal}"
+        .title="${t["totalSeats"][this.language]}"
+        .text="${parkingCapacity}"
+      ></wc-sidemodal-row>
+      <wc-sidemodal-row
+        .type="${SIDE_MODAL_ROW_TYPES.horizontal}"
+        .title="${t["occupiedSeats"][this.language]}"
+        .text="${occupiedSpots}"
+      ></wc-sidemodal-row>
       <wc-sidemodal-row
         .type="${SIDE_MODAL_ROW_TYPES.vertical}"
         .title="${t["address"][this.language]}"
