@@ -218,3 +218,14 @@
     box-shadow: 0 0 0 5px rgba(0, 0, 0, 0);
   }
 }
+
+.legend {
+  position: relative;
+  width: 300px;
+  height: 30px;
+  margin: 0 0 0 17px;
+  span {
+    padding-left: 15px;
+    font-size: 12px;
+  }
+}

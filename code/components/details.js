@@ -167,6 +167,15 @@ export function render_details() {
         .text="${dayjs(lastChange).format("DD/MM/YYYY HH:mm")}"
       ></wc-sidemodal-row>
 
+      <div>
+        <p class="caption">${t["legend"][this.language]}</p>
+      </div>
+
+      <div class='legend'>
+        <div style='top: 10px; left: 0' class="custom-div-icon-dot"></div>
+        <span>&mapstoleft; ${t["pulsingDot"][this.language]}</span>
+      </div>
+
       ${!this.disableParkingForecast
         ? html`
             <div>

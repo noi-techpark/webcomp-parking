@@ -75,4 +75,14 @@ export const t = {
     en: "Last update",
     de: "Letztes Update",
   },
+  pulsingDot: {
+    it: "aggiornamento automatico dei dati",
+    en: "automatic data updates",
+    de: "automatische Updates der Daten"
+  },
+  legend: {
+    it: "Legenda",
+    en: "Key",
+    de: "Legende"
+  },
 };
