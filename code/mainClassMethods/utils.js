@@ -1,4 +1,4 @@
-import greenIcon from "../assets/pins/green.svg";
+import blueIcon from "../assets/pins/blue.svg";
 import redIcon from "../assets/pins/red.svg";
 import Leaflet from "leaflet";
 
@@ -7,9 +7,9 @@ export const getPin = (mvalue) => {
   let hasRealtimeData = false;
   var pin;
   if (mvalue === undefined || mvalue < 0) {
-    pin = greenIcon;
+    pin = blueIcon;
   } else if (mvalue >= 1) {
-    pin = greenIcon;
+    pin = blueIcon;
     hasRealtimeData = true;
   } else {
     pin = redIcon;
