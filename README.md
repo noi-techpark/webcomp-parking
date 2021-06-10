@@ -15,6 +15,7 @@ Do you want to see it in action? Go to our [web component store](https://webcomp
       - [language](#language)
       - [mapAttribution](#mapattribution)
       - [currentLocation](#currentlocation)
+      - [zoom](#zoom)
       - [tiles-url](#tiles-url)
       - [disableParkingDirections](#disableparkingdirections)
       - [disableParkingForecast](#disableparkingforecast)
@@ -93,6 +94,12 @@ Example: `'Map Tiles &copy; <a href="http://developer.here.com">HERE</a>'`
 Set the starting point position on the map.
 
 Example: `'{ "lat": 46.31, "lng": 11.26 }'`
+
+#### zoom
+
+Set the zoom level of the map.
+
+Example: `10`
 
 #### tiles-url
 
