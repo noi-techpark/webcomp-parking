@@ -76,13 +76,13 @@ export const t = {
     de: "Letztes Update",
   },
   pulsingDot: {
-    it: "aggiornamento automatico dei dati",
-    en: "automatic data updates",
-    de: "automatische Updates der Daten"
+    it: "Dati in tempo reale",
+    en: "Real time data",
+    de: "Echtzeitdaten"
   },
   legend: {
-    it: "Legenda",
-    en: "Key",
+    it: "Leggenda",
+    en: "Legend",
     de: "Legende"
   },
 };
