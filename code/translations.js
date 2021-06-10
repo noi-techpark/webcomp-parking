@@ -2,7 +2,7 @@ export const t = {
   openTheMap: {
     it: "Apri la mappa",
     en: "Open the map",
-    de: "Öffne die Karte",
+    de: "Karte öffnen",
   },
   search: {
     it: "Cerca",
@@ -58,7 +58,7 @@ export const t = {
   totalSeats: {
     it: "Posti totali",
     en: "Total seats",
-    de: "Gesamtzahl der Sitzplätze",
+    de: "Anzahl Parkplätze",
   },
   occupiedSeats: {
     it: "Posti occupati",
@@ -74,5 +74,15 @@ export const t = {
     it: "Ultimo aggiornamento",
     en: "Last update",
     de: "Letztes Update",
+  },
+  pulsingDot: {
+    it: "Dati in tempo reale",
+    en: "Real time data",
+    de: "Echtzeitdaten"
+  },
+  legend: {
+    it: "Leggenda",
+    en: "Legend",
+    de: "Legende"
   },
 };

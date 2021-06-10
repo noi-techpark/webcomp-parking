@@ -18,8 +18,6 @@ Do you want to see it in action? Go to our [web component store](https://webcomp
       - [tiles-url](#tiles-url)
       - [disableParkingDirections](#disableparkingdirections)
       - [disableParkingForecast](#disableparkingforecast)
-      - [disableParkingRealTime](#disableparkingrealtime)
-      - [enabledParkingData](#enabledparkingdata)
   - [Getting started](#getting-started)
     - [Prerequisites](#prerequisites)
     - [Source code](#source-code)
@@ -55,7 +53,6 @@ Include the webcompscript file `dist/odh-parking.js` in your HTML and define the
     disableParkingForecast="false"
     disableParkingDirections
     disableParkingForecast
-    disableParkingRealTime
 ></odh-parking>
 ```
 
@@ -110,16 +107,6 @@ If set the road directions are hidden.
 #### disableParkingForecast
 
 If set the forecast graph is hidden.
-
-#### disableParkingRealTime
-
-If set the real time data are hidden.
-
-#### enabledParkingData
-
-Set the datasets to use in the component. Default is `["tourism", "mobility"]`.
-
-Example: `["mobility"]`
 
 
 ## Getting started
@@ -249,7 +236,7 @@ docker-compose run --rm app /bin/bash -c "yarn start"
 
 ### Support
 
-ToDo: For support, please contact [help@opendatahub.bz.it](mailto:help@opendatahub.bz.it).
+For support, please contact [help@opendatahub.bz.it](mailto:help@opendatahub.bz.it).
 
 ### Contributing
 

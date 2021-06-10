@@ -8,8 +8,7 @@ export const requestTourismParking = async ({ language }) => {
     if (request.status !== 200) {
       throw new Error(request.statusText);
     }
-    const response = await request.json();
-    return response;
+    return await request.json();
   } catch (error) {
     console.log(error);
   }
@@ -23,8 +22,7 @@ export const requestMobilityParking = async () => {
     if (request.status !== 200) {
       throw new Error(request.statusText);
     }
-    const response = await request.json();
-    return response;
+    return await request.json();
   } catch (error) {
     console.log(error);
   }
@@ -38,8 +36,7 @@ export const requestMobilityParkingDetails = async ({ scode }) => {
     if (request.status !== 200) {
       throw new Error(request.statusText);
     }
-    const response = await request.json();
-    return response;
+    return await request.json();
   } catch (error) {
     console.log(error);
   }

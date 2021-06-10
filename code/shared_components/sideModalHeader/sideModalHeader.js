@@ -13,7 +13,7 @@ export class SideModalHeader extends LitElement {
     this.fCancelFiltersText = '---';
 
     this.tIcon = '';
-    this.tLinkedTagText = '---';
+    this.tLinkedTagText = '';
     this.tTitle = '---';
     this.tSubtitle = '';
     this.tOptionalLink = { text: '', url: '' };

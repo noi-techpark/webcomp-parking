@@ -10,9 +10,7 @@ export class BaseParking extends LitElement {
     this.mapAttribution = "";
     this.language = LANGUAGES.EN;
     this.disableParkingForecast = false;
-    this.disableParkingRealTime = false;
     this.disableParkingDirections = false;
-    this.enabledParkingData = ["tourism", "mobility"];
 
     this.isLoading = true;
     this.mobileOpen = false;
@@ -20,6 +18,7 @@ export class BaseParking extends LitElement {
 
     this.map = undefined;
     this.currentLocation = { lat: 46.479, lng: 11.331 };
+    this.zoom = 10;
 
     this.searchPlacesFound = {};
     this.hereMapsQuery = "";

@@ -8,11 +8,8 @@ import {
   requestMobilityParkingDetails,
   requestTourismParking,
 } from "../api/parkingStations";
-import { getLatLongFromStationDetail, get_system_language } from "../utils";
+import { getLatLongFromStationDetail } from "../utils";
 import { getPin } from "./utils";
-import greyIcon from "../assets/pins/grey.svg";
-
-// import { CUSTOMstationCompetenceTypes } from "../webcomp-meteo-generic";
 
 export async function initializeMap() {
   const DefaultIcon = Leaflet.icon({
@@ -32,7 +29,7 @@ export async function initializeMap() {
 
   this.map.setView(
     { lat: this.currentLocation.lat, lon: this.currentLocation.lng },
-    10
+    parseInt(this.zoom)
   );
 }
 
@@ -72,14 +69,10 @@ export function drawUserOnMap() {
 export async function drawStationsOnMap() {
   const stations_layer_array = [];
 
-  const parkingStations = this.enabledParkingData.includes("mobility")
-    ? await requestMobilityParking()
-    : undefined;
-  const tourismParkingStations = this.enabledParkingData.includes("tourism")
-    ? await requestTourismParking({
+  const parkingStations = await requestMobilityParking();
+  const tourismParkingStations = await requestTourismParking({
         language: this.language,
-      })
-    : undefined;
+      });
 
   if (parkingStations) {
     Object.values(parkingStations.data.ParkingStation.stations)
@@ -102,14 +95,12 @@ export async function drawStationsOnMap() {
           station.scoordinate
         );
 
-        const station_icon = Leaflet.icon({
-          iconUrl: getPin(station.sdatatypes.free.tmeasurements[0].mvalue),
-          iconSize: [36, 36],
-        });
+        const realtimeFreePlaces = station.sdatatypes.free.tmeasurements[0].mvalue
+
         const marker = Leaflet.marker(
           [marker_position.lat, marker_position.lng],
           {
-            icon: station_icon,
+            icon: getPin(realtimeFreePlaces),
           }
         );
 
@@ -140,14 +131,10 @@ export async function drawStationsOnMap() {
         x: station.GpsPoints.position.Longitude,
         y: station.GpsPoints.position.Latitude,
       });
-      const station_icon = Leaflet.icon({
-        iconUrl: greyIcon,
-        iconSize: [36, 36],
-      });
       const marker = Leaflet.marker(
         [marker_position.lat, marker_position.lng],
         {
-          icon: station_icon,
+          icon: getPin(-1),
         }
       );
 
@@ -185,7 +172,7 @@ export async function drawStationsOnMap() {
     iconCreateFunction(cluster) {
       return Leaflet.divIcon({
         html: `<div class="marker_cluster__marker">${cluster.getChildCount()}</div>`,
-        iconSize: Leaflet.point(36, 36),
+        iconSize: Leaflet.point(30, 30),
       });
     },
   });

@@ -46,11 +46,6 @@ export function render_details() {
           .title="${t["address"][this.language]}"
           .text="${mainaddress || municipality}"
         ></wc-sidemodal-row>
-        <wc-sidemodal-row
-          .type="${SIDE_MODAL_ROW_TYPES.vertical}"
-          .title="${t["lastUpdate"][this.language]}"
-          .text="${dayjs(lastChange).format("DD/MM/YYYY hh:mm")}"
-        ></wc-sidemodal-row>
       </div>
     </div>`;
   }
@@ -150,19 +145,16 @@ export function render_details() {
       <div>
         <p class="caption">${t["details"][this.language]}</p>
       </div>
-      ${!this.disableParkingRealTime
-        ? html`<wc-sidemodal-row
-              .type="${SIDE_MODAL_ROW_TYPES.horizontal}"
-              .title="${t["totalSeats"][this.language]}"
-              .text="${parkingCapacity}"
-            ></wc-sidemodal-row>
-            <wc-sidemodal-row
-              .type="${SIDE_MODAL_ROW_TYPES.horizontal}"
-              .title="${t["occupiedSeats"][this.language]}"
-              .text="${occupiedSpots}"
-            ></wc-sidemodal-row>`
-        : ""}
-
+      <wc-sidemodal-row
+        .type="${SIDE_MODAL_ROW_TYPES.horizontal}"
+        .title="${t["totalSeats"][this.language]}"
+        .text="${parkingCapacity}"
+      ></wc-sidemodal-row>
+      <wc-sidemodal-row
+        .type="${SIDE_MODAL_ROW_TYPES.horizontal}"
+        .title="${t["occupiedSeats"][this.language]}"
+        .text="${occupiedSpots}"
+      ></wc-sidemodal-row>
       <wc-sidemodal-row
         .type="${SIDE_MODAL_ROW_TYPES.vertical}"
         .title="${t["address"][this.language]}"
@@ -172,8 +164,17 @@ export function render_details() {
       <wc-sidemodal-row
         .type="${SIDE_MODAL_ROW_TYPES.vertical}"
         .title="${t["lastUpdate"][this.language]}"
-        .text="${dayjs(lastChange).format("DD/MM/YYYY hh:mm")}"
+        .text="${dayjs(lastChange).format("DD/MM/YYYY HH:mm")}"
       ></wc-sidemodal-row>
+
+      <div>
+        <p class="caption">${t["legend"][this.language]}</p>
+      </div>
+
+      <div class='legend'>
+        <div style='top: 11px !important; left: 0' class="custom-div-icon-dot"></div>
+        <span>&mapstoleft; ${t["pulsingDot"][this.language]}</span>
+      </div>
 
       ${!this.disableParkingForecast
         ? html`

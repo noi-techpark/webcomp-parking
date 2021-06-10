@@ -5,10 +5,9 @@ export const observedProperties = {
   language: { type: String },
   tiles_url: { type: String, attribute: "tiles-url" },
   currentLocation: { type: Object },
+  zoom: { type: String },
   disableParkingForecast: { type: Boolean },
-  disableParkingRealTime: { type: Boolean },
   disableParkingDirections: { type: Boolean },
-  enabledParkingData: { type: Array },
 
   isLoading: { type: Boolean },
   filters: { type: Object },
