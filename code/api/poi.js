@@ -1,4 +1,4 @@
-import { BASE_PATH_MOBILITY, TOURISM_PATH_MOBILITY } from "./config";
+import { BASE_PATH_MOBILITY, TOURISM_PATH_MOBILITY, ORIGIN } from "./config";
 
 export async function requestGetCoordinatesFromSearch(query) {
   const r = 150 * 1000;
@@ -6,7 +6,7 @@ export async function requestGetCoordinatesFromSearch(query) {
     if (query) {
       let formattedTourismParkingStationsData = [];
       const tourismParkingStationsRequest = await fetch(
-        `${TOURISM_PATH_MOBILITY}/Poi?pagenumber=1&poitype=64&subtype=2&pagesize=-1&searchfilter=${query}`
+        `${TOURISM_PATH_MOBILITY}/Poi?pagenumber=1&poitype=64&subtype=2&pagesize=-1&searchfilter=${query}&` + ORIGIN
       );
       const tourismParkingStationsResponse = await tourismParkingStationsRequest.json();
       if (tourismParkingStationsResponse.Items) {
@@ -26,7 +26,7 @@ export async function requestGetCoordinatesFromSearch(query) {
 
       let formattedMobilityParkingStationsData = [];
       const mobilityParkingStationsRequest = await fetch(
-        `${BASE_PATH_MOBILITY}/tree,node/ParkingStation/*/latest?where=and(or(smetadata.name_it.ire."${query}",smetadata.name_en.ire."${query}",smetadata.name_de.ire."${query}",sname.ire."${query}"),sactive.eq.true)&select=smetadata,scoordinate,sname`
+        `${BASE_PATH_MOBILITY}/tree,node/ParkingStation/*/latest?where=and(or(smetadata.name_it.ire."${query}",smetadata.name_en.ire."${query}",smetadata.name_de.ire."${query}",sname.ire."${query}"),sactive.eq.true)&select=smetadata,scoordinate,sname&` + ORIGIN
       );
       const mobilityParkingStationsResponse = await mobilityParkingStationsRequest.json();
       if (
@@ -72,7 +72,7 @@ export async function requestGetCoordinatesFromSearch(query) {
       //
 
       const tourismResponse = await fetch(
-        `https://tourism.opendatahub.bz.it/api/Poi?pagenumber=1&pagesize=10000&poitype=511&searchfilter=${query}`,
+        `${TOURISM_PATH_MOBILITY}/Poi?pagenumber=1&pagesize=10000&poitype=511&searchfilter=${query}&` + ORIGIN,
         {
           method: "GET",
           headers: new Headers({

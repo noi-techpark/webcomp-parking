@@ -3,7 +3,7 @@ import { BASE_PATH_MOBILITY, TOURISM_PATH_MOBILITY } from "./config";
 export const requestTourismParking = async ({ language }) => {
   try {
     const request = await fetch(
-      `${TOURISM_PATH_MOBILITY}/Poi?pagenumber=1&poitype=64&subtype=2&pagesize=1000&language=${language}`
+      `${TOURISM_PATH_MOBILITY}/Poi?pagenumber=1&poitype=64&subtype=2&pagesize=1000&language=${language}&` + ORIGIN
     );
     if (request.status !== 200) {
       throw new Error(request.statusText);
@@ -17,7 +17,7 @@ export const requestTourismParking = async ({ language }) => {
 export const requestMobilityParking = async () => {
   try {
     const request = await fetch(
-      `${BASE_PATH_MOBILITY}/tree,node/ParkingStation/*/latest?where=sactive.eq.true&select=scoordinate,scode,smetadata,sdatatypes`
+      `${BASE_PATH_MOBILITY}/tree,node/ParkingStation/*/latest?where=sactive.eq.true&select=scoordinate,scode,smetadata,sdatatypes&` + ORIGIN
     );
     if (request.status !== 200) {
       throw new Error(request.statusText);
@@ -31,7 +31,7 @@ export const requestMobilityParking = async () => {
 export const requestMobilityParkingDetails = async ({ scode }) => {
   try {
     const request = await fetch(
-      `${BASE_PATH_MOBILITY}/tree,node/ParkingStation/*/latest?where=sactive.eq.true,scode.eq."${scode}"&select=scoordinate,smetadata,scode,sdatatypes,sname`
+      `${BASE_PATH_MOBILITY}/tree,node/ParkingStation/*/latest?where=sactive.eq.true,scode.eq."${scode}"&select=scoordinate,smetadata,scode,sdatatypes,sname&` + ORIGIN
     );
     if (request.status !== 200) {
       throw new Error(request.statusText);
