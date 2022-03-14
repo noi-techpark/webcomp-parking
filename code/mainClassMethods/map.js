@@ -71,8 +71,8 @@ export async function drawStationsOnMap() {
 
   const parkingStations = await requestMobilityParking();
   const tourismParkingStations = await requestTourismParking({
-        language: this.language,
-      });
+    language: this.language,
+  });
 
   if (parkingStations) {
     Object.values(parkingStations.data.ParkingStation.stations)
@@ -83,7 +83,7 @@ export async function drawStationsOnMap() {
           if (
             station.sdatatypes.occupied &&
             station.sdatatypes.occupied.tmeasurements[0].mvalue >=
-              station.smetadata.capacity
+            station.smetadata.capacity
           ) {
             valid = false;
           }
@@ -127,46 +127,49 @@ export async function drawStationsOnMap() {
 
   if (tourismParkingStations) {
     tourismParkingStations.Items.map((station) => {
-      const marker_position = getLatLongFromStationDetail({
-        x: station.GpsPoints.position.Longitude,
-        y: station.GpsPoints.position.Latitude,
-      });
-      const marker = Leaflet.marker(
-        [marker_position.lat, marker_position.lng],
-        {
-          icon: getPin(-1),
-        }
-      );
+      console.log(station);
+      if (station.GpsInfo[0] != null) { // check if position exists, because tourism data is reduced now
+        const marker_position = getLatLongFromStationDetail({
+          x: station.GpsInfo[0].Longitude,
+          y: station.GpsInfo[0].Latitude,
+        });
+        const marker = Leaflet.marker(
+          [marker_position.lat, marker_position.lng],
+          {
+            icon: getPin(-1),
+          }
+        );
 
-      const action = async () => {
-        if (station) {
-          this.searchPlacesFound = {};
-          this.currentStation = {
-            scoordinate: marker_position,
-            sname: station.Detail[this.language].Title,
-            smetadata: {
-              mainaddress: `${station.ContactInfos[this.language].City} ${
-                station.ContactInfos[this.language].Address
-              }`,
-              municipality: "",
-            },
-            sdatatypes: undefined,
-            lastChange: station.LastChange,
-          };
-        }
+        const action = async () => {
+          if (station) {
+            this.searchPlacesFound = {};
+            this.currentStation = {
+              scoordinate: marker_position,
+              sname: station.Detail[this.language].Title,
+              smetadata: {
+                mainaddress: `${station.ContactInfos[this.language].City} ${station.ContactInfos[this.language].Address
+                  }`,
+                municipality: "",
+              },
+              sdatatypes: undefined,
+              lastChange: station.LastChange,
+            };
+          }
 
-        this.filtersOpen = false;
-        this.detailsOpen = true;
-      };
+          this.filtersOpen = false;
+          this.detailsOpen = true;
+        };
 
-      marker.on("mousedown", action);
-      stations_layer_array.push(marker);
+        marker.on("mousedown", action);
+        stations_layer_array.push(marker);
+      }
     });
+
   }
 
   const stations_layer = Leaflet.layerGroup(stations_layer_array, {});
 
-  this.layer_stations = new leaflet_mrkcls.MarkerClusterGroup({
+  this.layer_stations = new Leaflet.MarkerClusterGroup({
     showCoverageOnHover: false,
     chunkedLoading: true,
     iconCreateFunction(cluster) {
