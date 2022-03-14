@@ -127,7 +127,6 @@ export async function drawStationsOnMap() {
 
   if (tourismParkingStations) {
     tourismParkingStations.Items.map((station) => {
-      console.log(station);
       if (station.GpsInfo[0] != null) { // check if position exists, because tourism data is reduced now
         const marker_position = getLatLongFromStationDetail({
           x: station.GpsInfo[0].Longitude,
