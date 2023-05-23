@@ -5,7 +5,7 @@
 
 A web component that shows the parking area stored in the Open Data Hub.
 
-Do you want to see it in action? Go to our [web component store](https://webcomponents.opendatahub.bz.it/webcomponent/543ed85d-8280-4240-8625-4ee5102710ff)!
+Do you want to see it in action? Go to our [web component store](https://webcomponents.opendatahub.com/webcomponent/543ed85d-8280-4240-8625-4ee5102710ff)!
 
 - [Parking - Web component](#parking---web-component)
   - [Usage](#usage)
@@ -244,7 +244,7 @@ docker-compose run --rm app /bin/bash -c "npm run start"
 
 ### Support
 
-For support, please contact [help@opendatahub.bz.it](mailto:help@opendatahub.bz.it).
+For support, please contact [help@opendatahub.com](mailto:help@opendatahub.com).
 
 ### Contributing
 
