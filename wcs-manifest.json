@@ -4,6 +4,7 @@
   "descriptionAbstract": "This web component shows all parking lots provided by the Open Data Hub.",
   "license": "AGPL-3.0-or-later",
   "repositoryUrl": "https://github.com/noi-techpark/webcomp-parking.git",
+  "shortName": "parking",
   "copyrightHolders": [
     {
       "name": "NOI",
