@@ -4,10 +4,10 @@
  * SPDX-License-Identifier: AGPL-3.0-or-later
  */
 
-@import '../baseline/colors.scss';
-@import '../baseline/fonts.scss';
-@import '../baseline/typography.scss';
-@import '../baseline/elevations.scss';
+@use '../baseline/colors' as *;
+@use '../baseline/fonts' as *;
+@use '../baseline/typography' as *;
+@use '../baseline/elevations' as *;
 
 .searchbar {
   @include MixinFontFamily;

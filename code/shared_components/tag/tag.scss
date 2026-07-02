@@ -4,8 +4,8 @@
  * SPDX-License-Identifier: AGPL-3.0-or-later
  */
 
-@import "../baseline/colors.scss";
-@import "../baseline/fonts.scss";
+@use "../baseline/colors" as *;
+@use "../baseline/fonts" as *;
 
 span {
   @include MixinFontFamily;

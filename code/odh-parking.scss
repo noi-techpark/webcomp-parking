@@ -4,8 +4,8 @@
  * SPDX-License-Identifier: AGPL-3.0-or-later
  */
 
-@import "./shared_components/baseline/colors.scss";
-@import "./shared_components/baseline/typography.scss";
+@use "./shared_components/baseline/colors" as *;
+@use "./shared_components/baseline/typography" as *;
 
 .caption {
   @include MixinCaption;

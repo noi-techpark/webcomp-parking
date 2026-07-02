@@ -9,7 +9,6 @@ var dotenv = require("dotenv").config({ path: __dirname + "/.env" });
 module.exports = {
   mode: "development",
   entry: path.resolve(__dirname, "./code/odh-parking.js"),
-  watch: true,
   output: {
     path: path.resolve(__dirname, "./work/scripts"),
     filename: "odh-parking.js",
@@ -19,16 +18,20 @@ module.exports = {
       "process.env.DOTENV": JSON.stringify(dotenv.parsed),
     }),
   ],
-  // webpack-dev-server configuration
   devServer: {
-    contentBase: path.resolve(__dirname, "./work"),
-    publicPath: "/scripts/",
-    watchContentBase: true,
+    static: {
+      directory: path.resolve(__dirname, "./work"),
+      watch: true,
+    },
+    devMiddleware: {
+      publicPath: "/scripts/",
+    },
     compress: true,
     port: 8080,
     open: false,
-    openPage: "",
-    overlay: true,
+    client: {
+      overlay: true,
+    },
   },
   devtool: "inline-source-map",
   module: {
@@ -41,8 +44,7 @@ module.exports = {
           options: {
             presets: ["@babel/preset-env"],
             plugins: [
-              "@babel/plugin-syntax-class-properties",
-              "@babel/plugin-proposal-class-properties",
+              "@babel/plugin-transform-class-properties",
             ],
           },
         },
